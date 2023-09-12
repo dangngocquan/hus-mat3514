@@ -1,37 +1,45 @@
 package hw1_21000699_dangngocquan.exercise006.p1dot30;
 
+import hw1_21000699_dangngocquan.exercise006.p1dot30.components.*;
 import javax.swing.*;
-import java.awt.*;
 
 public class App extends JFrame {
+    private BasicPanel viewComponent = null;
+    private BasicPanel inputComponent = null;
     public App() {
         super("P1.30");
-        setSize(Config.WIDTH, Config.HEIGHT);
+        setSize(Config.DEVICE_WIDTH, Config.DEVICE_HEIGHT);
         setResizable(false);
         setAlwaysOnTop(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
 
-        addBoxInput();
-        addBars();
+        addInputComponent();
+        addViewComponent();
 
         setVisible(true);
 
     }
 
-    public void addBars() {
-        this.add(new Bar(0, 0, 100, 300));
+    public void addViewComponent() {
+        this.viewComponent = new ViewComponent(
+                0, 0,
+                Config.VIEW_COMPONENT_WIDTH,
+                Config.VIEW_COMPONENT_HEIGHT
+        );
+        this.add(viewComponent);
     }
 
-    public void addBoxInput() {
-        JScrollPane scrollPane = new JScrollPane(
-                new BoxInput(
-                        200, 400, 100, 300, 1, 5, 5
-                )
+    public void addInputComponent() {
+        this.inputComponent = new InputComponent(
+                0, Config.VIEW_COMPONENT_HEIGHT,
+                Config.INPUT_COMPONENT_WIDTH,
+                Config.INPUT_COMPONENT_HEIGHT
         );
+        this.add(inputComponent);
+    }
 
-        this.add(new BoxInput(
-                200, 400, 100, 300, 1, 5, 5
-        ));
+    public void renderBarChart(String text) {
+        ((ViewComponent) viewComponent).renderBarChart(text);
     }
 }

@@ -1,10 +1,10 @@
-package hw1_21000699_dangngocquan.exercise006.p1dot30;
+package hw1_21000699_dangngocquan.exercise006.p1dot30.components;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
-public class BoxInput extends JTextArea {
+public class BasicTextArea extends JTextArea {
     private int x;
     private int y;
     private int width;
@@ -12,7 +12,7 @@ public class BoxInput extends JTextArea {
     private int thickness;
     private int arcWidth, arcHeight;
 
-    public BoxInput(int x, int y, int width, int height, int thickness, int arcWidth, int arcHeight) {
+    public BasicTextArea(int x, int y, int width, int height, int thickness, int arcWidth, int arcHeight) {
         super(width, height);
 
         this.x = x;
@@ -35,6 +35,7 @@ public class BoxInput extends JTextArea {
     }
 
     public void paintComponent(Graphics g) {
+        super.paintComponent(g);
         g.setColor(getBackground());
         g.fillRoundRect(thickness - 1, thickness - 1, getWidth() - 2 * thickness, getHeight() - 2 * thickness, arcWidth,
                 15);
