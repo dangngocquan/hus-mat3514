@@ -5,6 +5,8 @@ import hw1_21000699_dangngocquan.exercise006.p1dot30.Config;
 import hw1_21000699_dangngocquan.exercise006.p1dot30.services.Service;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -19,7 +21,6 @@ public class InputComponent extends BasicPanel {
 
         addTextAreaInput();
         addButtonImportData();
-        addButtonRenderBarChart();
     }
 
     @Override
@@ -33,8 +34,25 @@ public class InputComponent extends BasicPanel {
         this.textAreaInput = new TextAreaInput(
                 20, (Config.INPUT_COMPONENT_HEIGHT - Config.TEXT_AREA_INPUT_HEIGHT) / 2,
                 Config.TEXT_AREA_INPUT_WIDTH, Config.TEXT_AREA_INPUT_HEIGHT,
-                1, 5, 5
+                1, 0, 0
         );
+        this.textAreaInput.getDocument().addDocumentListener(new DocumentListener() {
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                handleRenderBarChart();
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                handleRenderBarChart();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent arg0) {
+
+            }
+        });
         this.add(textAreaInput);
     }
 
@@ -43,28 +61,14 @@ public class InputComponent extends BasicPanel {
                 textAreaInput.getX() + textAreaInput.getWidth() + 20,
                 textAreaInput.getY(),
                 (Config.WIDTH - textAreaInput.getWidth()) - 60,
-                textAreaInput.getHeight() / 2 - 10,
-                "Import ..."
+                textAreaInput.getHeight(),
+                "Import document"
         );
         this.buttonImportData.addActionListener(
                 new HandlerButtonImportData()
         );
 
         this.add(buttonImportData);
-    }
-
-    public void addButtonRenderBarChart() {
-        this.buttonRenderBarChart = new BasicButton(
-                buttonImportData.getX(),
-                buttonImportData.getY() + buttonImportData.getHeight() + 20,
-                buttonImportData.getWidth(),
-                buttonImportData.getHeight(),
-                "Render Bar Chart Plot"
-        );
-        this.buttonRenderBarChart.addActionListener(
-                new HandlerButtonRenderBarChart()
-        );
-        this.add(buttonRenderBarChart);
     }
 
     public String getText() {
@@ -89,15 +93,6 @@ public class InputComponent extends BasicPanel {
                 String data = Service.getStringFromFile(path);
                 textAreaInput.setText(data);
             }
-
         }
     }
-
-    private class HandlerButtonRenderBarChart implements ActionListener{
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            handleRenderBarChart();
-        }
-    }
-
 }

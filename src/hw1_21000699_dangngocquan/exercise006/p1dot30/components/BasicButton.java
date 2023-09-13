@@ -1,5 +1,7 @@
 package hw1_21000699_dangngocquan.exercise006.p1dot30.components;
 
+import hw1_21000699_dangngocquan.exercise006.p1dot30.Config;
+
 import javax.swing.*;
 
 public class BasicButton extends JButton {
@@ -19,6 +21,7 @@ public class BasicButton extends JButton {
         setSize(width, height);
         setBounds(x, y, width, height);
         setFocusPainted(false);
+        setFont(Config.ARIAL_BOLD_12);
 
         setVisible(true);
     }

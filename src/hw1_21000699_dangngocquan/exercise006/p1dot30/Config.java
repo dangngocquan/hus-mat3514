@@ -21,7 +21,10 @@ public class Config {
 
 
     // Color
-    public static Color VIEW_COMPONENT_BACKGROUND_COLOR = new Color(245, 239, 239);
-    public static Color INPUT_COMPONENT_BACKGROUND_COLOR = new Color(208, 231, 231);
-    public static Color BAR_BACKGROUND_COLOR = new Color(57, 100, 140);
+    public static Color VIEW_COMPONENT_BACKGROUND_COLOR = new Color(255, 255, 255);
+    public static Color INPUT_COMPONENT_BACKGROUND_COLOR = new Color(255, 255, 255);
+    public static Color BAR_BACKGROUND_COLOR = new Color(126, 187, 229);
+
+    // Font
+    public static final Font ARIAL_BOLD_12 = new Font("Arial", Font.BOLD, 12);
 }

@@ -1,5 +1,7 @@
 package hw1_21000699_dangngocquan.exercise006.p1dot30.components;
 
+import hw1_21000699_dangngocquan.exercise006.p1dot30.Config;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -27,10 +29,11 @@ public class BasicTextArea extends JTextArea {
         setLayout(null);
         setSize(width, height);
         setBounds(x, y, width, height);
-        setForeground(new Color(211, 75, 75));
+        setForeground(new Color(75, 255, 0));
         setBorder(new LineBorder(new Color(210, 106, 106), thickness, true));
         setLineWrap(true);
         setWrapStyleWord(true);
+        setFont(Config.ARIAL_BOLD_12);
         setVisible(true);
     }
 
