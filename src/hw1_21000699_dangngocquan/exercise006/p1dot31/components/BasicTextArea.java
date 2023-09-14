@@ -34,6 +34,7 @@ public class BasicTextArea extends JTextArea {
         setLineWrap(true);
         setWrapStyleWord(true);
         setFont(Config.ARIAL_BOLD_12);
+        setDisabledTextColor( Color.black);
         setVisible(true);
     }
 

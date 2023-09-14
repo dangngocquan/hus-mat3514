@@ -45,7 +45,11 @@ public class Sphere {
         return d <= r;
     }
 
-    public boolean isContainsSphere(Sphere another) {
+    public boolean isOutside(Sphere another) {
+        return !isIntersects(another);
+    }
+
+    public boolean isExternalContact(Sphere another) {
         // center A of this sphere
         double xA = x;
         double yA = x;
@@ -56,26 +60,8 @@ public class Sphere {
         double zB = another.getZ();
         double rB = another.getR();
 
-        if (this.r < rB) return false;
-        if (Double.compare(this.r, rB) == 0) {
-            return Double.compare(xA, xB) == 0 &&
-                    Double.compare(yA, yB) == 0 &&
-                    Double.compare(zA, zB) == 0;
-        }
-
-
-        // AB: x = xA + (xB-xA) * t
-        //     y = yA + (yB-yA) * t
-        //     z = zA + (zB-zA) * t
-
         double dAB = Math.sqrt((xB-xA)*(xB-xA) + (yB-yA)*(yB-yA) + (zB-zA)*(zB-zA));
-        double dAC = dAB + rB;
-        double t = dAC / dAB;
-        double xC = xA + (xB-xA) * t;
-        double yC = yA + (yB-yA) * t;
-        double zC = zA + (zB-zA) * t;
-
-        return isContainsPoint(xC, yC, zC);
+        return Double.compare(dAB, this.r + rB) == 0;
     }
 
     public boolean isIntersects(Sphere another) {
@@ -92,6 +78,53 @@ public class Sphere {
         double dAB = Math.sqrt((xB-xA)*(xB-xA) + (yB-yA)*(yB-yA) + (zB-zA)*(zB-zA));
         return dAB <= this.r + rB;
     }
+
+    public boolean isInternalContact(Sphere another) {
+        // center A of this sphere
+        double xA = x;
+        double yA = x;
+        double zA = z;
+        // center B and radius of another sphere
+        double xB = another.getX();
+        double yB = another.getY();
+        double zB = another.getZ();
+        double rB = another.getR();
+
+        double dAB = Math.sqrt((xB-xA)*(xB-xA) + (yB-yA)*(yB-yA) + (zB-zA)*(zB-zA));
+        return Double.compare(dAB, Math.abs(this.r - rB)) == 0;
+    }
+
+    public boolean isContainsSphere(Sphere another) {
+        // center A of this sphere
+        double xA = x;
+        double yA = x;
+        double zA = z;
+        // center B and radius of another sphere
+        double xB = another.getX();
+        double yB = another.getY();
+        double zB = another.getZ();
+        double rB = another.getR();
+
+        double dAB = Math.sqrt((xB-xA)*(xB-xA) + (yB-yA)*(yB-yA) + (zB-zA)*(zB-zA));
+        return dAB + rB <= this.r;
+    }
+
+    public boolean isConcentric(Sphere another) {
+        // center A of this sphere
+        double xA = x;
+        double yA = x;
+        double zA = z;
+        // center B and radius of another sphere
+        double xB = another.getX();
+        double yB = another.getY();
+        double zB = another.getZ();
+
+        return Double.compare(xA, xB) == 0 &&
+                Double.compare(yA, yB) == 0 &&
+                Double.compare(zA, zB) == 0;
+    }
+
+
 
     @Override
     public String toString() {

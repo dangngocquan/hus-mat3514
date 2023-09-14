@@ -25,8 +25,8 @@ public class Config {
     public static Color BACKGROUND_COLOR_CONTROLLER_VIEW = new Color(200, 207, 239);
     public static Color BACKGROUND_COLOR_ECOSYSTEM_VIEW = new Color(229, 246, 230);
     public static Color BACKGROUND_COLOR_ECOSYSTEM_TABLE = new Color(243, 220, 220);
-    public static Color BACKGROUND_COLOR_ECOSYSTEM_CELL = new Color(243, 220, 220);
-    public static Color BORDER_COLOR_ECOSYSTEM_CELL = new Color(0, 0, 0);
+    public static Color BACKGROUND_COLOR_ECOSYSTEM_CELL = new Color(255, 255, 255);
+    public static Color BORDER_COLOR_ECOSYSTEM_CELL = new Color(148, 147, 147);
 
     // Font
     public static final Font ARIAL_BOLD_12 = new Font("Arial", Font.BOLD, 12);

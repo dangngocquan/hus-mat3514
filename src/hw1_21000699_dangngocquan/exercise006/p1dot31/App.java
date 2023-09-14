@@ -9,6 +9,9 @@ import javax.swing.*;
 public class App extends JFrame {
     private BasicPanel controllerView = null;
     private BasicPanel ecosystemView = null;
+    private boolean inputChanged = false;
+    private boolean isEcosystemRunning = false;
+
     public App() {
         super("P1.31");
         setSize(Config.DEVICE_WIDTH, Config.DEVICE_HEIGHT);
@@ -41,13 +44,65 @@ public class App extends JFrame {
                 controllerView.getY(),
                 Config.WIDTH_ECOSYSTEM_VIEW_COMPONENT,
                 Config.HEIGHT_ECOSYSTEM_VIEW_COMPONENT,
-                getEcosystemSize()
+                getEcosystemSize(),
+                getInitialNumberBear(),
+                getInitialNumberFish()
         );
 
         this.add(ecosystemView);
     }
 
+    public void rerenderEcosystemViewWithInitialDataInput(
+            int ecosystemSize, int initialNumberBear, int initialNumberFish) {
+        ((EcosystemView) ecosystemView).rerenderWithInitialDataInput(
+                ecosystemSize, initialNumberBear, initialNumberFish);
+    }
+
+    public void rerenderControllerStatusPanels(int numberBearExisting, int numberFishExiting) {
+        ((ControllerView) controllerView).updateStatusPanels(
+                numberBearExisting,
+                numberFishExiting
+        );
+    }
+
+    public boolean isInputChanged() {
+        return inputChanged;
+    }
+
+    public void setInputChanged(boolean inputChanged) {
+        this.inputChanged = inputChanged;
+    }
+
     public int getEcosystemSize() {
         return ((ControllerView) controllerView).getEcosystemSize();
     }
+
+    public boolean isEcosystemRunning() {
+        return isEcosystemRunning;
+    }
+
+    public void setEcosystemRunning(boolean ecosystemRunning) {
+        isEcosystemRunning = ecosystemRunning;
+    }
+
+    public int getInitialNumberBear() {
+        return ((ControllerView) controllerView).getInitialNumberBear();
+    }
+
+    public int getInitialNumberFish() {
+        return ((ControllerView) controllerView).getInitialNumberFish();
+    }
+
+    public int getMillisecondPerStep() {
+        return ((ControllerView) controllerView).getMillisecondPerStep();
+    }
+
+    public void runEcosystem() {
+        ((EcosystemView) ecosystemView).runEcosystem();
+    }
+
+    public void stopEcosystem() {
+        ((EcosystemView) ecosystemView).stopEcosystem();
+    }
+
 }

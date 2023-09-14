@@ -1,17 +1,30 @@
 package hw1_21000699_dangngocquan.exercise006.p1dot31.components;
 
+import hw1_21000699_dangngocquan.exercise006.p1dot31.App;
 import hw1_21000699_dangngocquan.exercise006.p1dot31.Config;
+import hw1_21000699_dangngocquan.exercise006.p1dot31.models.Animal;
+import hw1_21000699_dangngocquan.exercise006.p1dot31.models.Bear;
+import hw1_21000699_dangngocquan.exercise006.p1dot31.models.Fish;
+import hw1_21000699_dangngocquan.exercise006.p1dot31.services.Service;
 
 import java.awt.*;
+import java.util.*;
+import java.util.List;
 
 public class EcosystemTable extends BasicPanel {
     private int size;
+    private Animal[] animals;
+    private List<Bear> bears;
+    private List<Fish> fishes;
     private EcosystemCell[][] ecosystemCells = null;
-    public EcosystemTable(int x, int y, int width, int height, int size) {
+    private Timer timer = null;
+    public EcosystemTable(
+            int x, int y, int width, int height, int size,
+            int initialNumberBear, int initialNumberFish) {
         super(x, y, width/size * size, height / size * size);
         this.size = size;
-        this.ecosystemCells = new EcosystemCell[size][size];
 
+        createRandomAnimals(size, initialNumberBear, initialNumberFish);
         addEcosystemCells();
     }
 
@@ -22,7 +35,21 @@ public class EcosystemTable extends BasicPanel {
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
     }
 
+    public void createRandomAnimals(
+            int ecosystemSize,
+            int initialNumberBear,
+            int initialNumberFish) {
+        animals = new Animal[ecosystemSize * ecosystemSize];
+        bears = new LinkedList<>();
+        fishes = new LinkedList<>();
+        Service.createRandomAnimals(
+                initialNumberBear, initialNumberFish,
+                animals, bears, fishes);
+    }
+
     public void addEcosystemCells() {
+        this.removeAll();
+        ecosystemCells = new EcosystemCell[size][size];
         int sizeCell = getWidth() / size;
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -30,10 +57,46 @@ public class EcosystemTable extends BasicPanel {
                         j * sizeCell,
                         i * sizeCell,
                         sizeCell,
-                        sizeCell
+                        sizeCell,
+                        animals[i*size+j]
                 );
                 this.add(ecosystemCells[i][j]);
             }
+        }
+        repaint();
+    }
+
+    public void runEcosystem() {
+        App app = (App) Service.getFrame(this);
+        int millisecondPerStep = app.getMillisecondPerStep();
+        this.timer = new Timer();
+        timer.schedule(new Task(), 0, millisecondPerStep);
+    }
+
+    public void stopEcosystem() {
+        timer.cancel();
+        timer.purge();
+    }
+
+    public App getApp() {
+        return (App) Service.getFrame(this);
+    }
+
+    private class Task extends TimerTask {
+        public static int i = 0;
+        @Override
+        public void run() {
+            Service.nextStepEcosystem(
+                    size,
+                    animals,
+                    bears,
+                    fishes
+            );
+            addEcosystemCells();
+            getApp().rerenderControllerStatusPanels(
+                    bears.size(),
+                    fishes.size()
+            );
         }
     }
 }
