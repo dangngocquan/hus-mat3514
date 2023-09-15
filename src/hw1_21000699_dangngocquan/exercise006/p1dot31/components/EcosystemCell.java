@@ -25,8 +25,12 @@ public class EcosystemCell extends BasicPanel {
             g2.setRenderingHint(RenderingHints.KEY_RENDERING,
                     RenderingHints.VALUE_RENDER_QUALITY);
             g2.drawImage(this.animal.getImage().getImage(),
-                    1, 1, getWidth()-2,
-                    getHeight()-2, null);
+                    2, 2, getWidth()-4,
+                    getHeight()-4, null);
         }
+    }
+
+    public void setAnimal(Animal animal) {
+        this.animal = animal;
     }
 }

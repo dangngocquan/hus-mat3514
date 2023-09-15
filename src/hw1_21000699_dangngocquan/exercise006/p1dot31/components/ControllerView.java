@@ -45,7 +45,7 @@ public class ControllerView extends BasicPanel {
                 new BasicPanelWithText(
                         10, 20,
                         (this.getWidth() - 40) / 2, 30,
-                        "Ecosystem Size [2 - 50]:"
+                        "Ecosystem Size [2 - 100]:"
                 );
         initialNumberBearPanel =
                 new BasicPanelWithText(
@@ -99,10 +99,10 @@ public class ControllerView extends BasicPanel {
                 1, 0, 0
         );
 
-        ecosystemSizeInput.setText("10");
-        initialNumberBearInput.setText("14");
-        initialNumberFishInput.setText("28");
-        millisecondPerStepInput.setText("1000");
+        ecosystemSizeInput.setText("20");
+        initialNumberBearInput.setText("18");
+        initialNumberFishInput.setText("12");
+        millisecondPerStepInput.setText("1004");
 
         ecosystemSizeInput.getDocument().addDocumentListener(new HandlerInputDataModify());
         initialNumberBearInput.getDocument().addDocumentListener(new HandlerInputDataModify());
@@ -121,24 +121,30 @@ public class ControllerView extends BasicPanel {
 
     public void addEcosystemStatusPanels(
             int numberBearExisting, int numberFishExisting) {
-        numberBearExistingPanel =
-                new BasicPanelWithText(
-                        millisecondPerStepPanel.getX(),
-                        millisecondPerStepPanel.getY() + millisecondPerStepPanel.getHeight() + 50,
-                        this.getWidth() - 40, 30,
-                        "Number Bears Existing: " + numberBearExisting
-                );
-
-        numberFishExistingPanel =
-                new BasicPanelWithText(
-                        numberBearExistingPanel.getX(),
-                        numberBearExistingPanel.getY() + numberBearExistingPanel.getHeight() + 10,
-                        numberBearExistingPanel.getWidth(), 30,
-                        "Number Fish Existing: " + numberFishExisting
-                );
-
-        this.add(numberBearExistingPanel);
-        this.add(numberFishExistingPanel);
+        if (numberBearExistingPanel == null) {
+            numberBearExistingPanel =
+                    new BasicPanelWithText(
+                            millisecondPerStepPanel.getX(),
+                            millisecondPerStepPanel.getY() + millisecondPerStepPanel.getHeight() + 50,
+                            this.getWidth() - 40, 30,
+                            "Number Bears Existing: " + numberBearExisting
+                    );
+            this.add(numberBearExistingPanel);
+        } else {
+            numberBearExistingPanel.setText("Number Bears Existing: " + numberBearExisting);
+        }
+        if (numberFishExistingPanel == null) {
+            numberFishExistingPanel =
+                    new BasicPanelWithText(
+                            numberBearExistingPanel.getX(),
+                            numberBearExistingPanel.getY() + numberBearExistingPanel.getHeight() + 10,
+                            numberBearExistingPanel.getWidth(), 30,
+                            "Number Fish Existing: " + numberFishExisting
+                    );
+            this.add(numberFishExistingPanel);
+        } else {
+            numberFishExistingPanel.setText("Number Fish Existing: " + numberFishExisting);
+        }
     }
 
     public void addControllerButtons() {
@@ -153,11 +159,6 @@ public class ControllerView extends BasicPanel {
         this.add(playButton);
     }
 
-    public void removeEcosystemStatusPanels() {
-        this.remove(numberBearExistingPanel);
-        this.remove(numberFishExistingPanel);
-    }
-
     public int getEcosystemSize() {
         String data = ecosystemSizeInput.getText();
         if (data.matches("[0-9]{1,}")) {
@@ -165,15 +166,15 @@ public class ControllerView extends BasicPanel {
             if (size < 2) {
                 ecosystemSizeInput.setText("2");
                 return 2;
-            } else if (size > 50) {
-                ecosystemSizeInput.setText("50");
-                return 50;
+            } else if (size > 100) {
+                ecosystemSizeInput.setText("100");
+                return 100;
             } else {
                 return size;
             }
         } else {
-            ecosystemSizeInput.setText("10");
-            return 10;
+            ecosystemSizeInput.setText("20");
+            return 20;
         }
     }
 
@@ -224,12 +225,9 @@ public class ControllerView extends BasicPanel {
         String data = millisecondPerStepInput.getText();
         if (data.matches("[0-9]{1,}")) {
             int size = Integer.parseInt(data);
-            if (size < 100) {
-                millisecondPerStepInput.setText("100");
-                return 100;
-            } else if (size > 10000) {
-                millisecondPerStepInput.setText("10000");
-                return 10000;
+            if (size < 1) {
+                millisecondPerStepInput.setText("1");
+                return 1;
             } else {
                 return size;
             }
@@ -241,10 +239,8 @@ public class ControllerView extends BasicPanel {
 
     public void updateStatusPanels(
             int numberBearExisting, int numberFishExisting) {
-        removeEcosystemStatusPanels();
         addEcosystemStatusPanels(
                 numberBearExisting, numberFishExisting);
-        repaint();
     }
 
     public App getApp() {

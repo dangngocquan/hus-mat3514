@@ -22,5 +22,8 @@ public class BasicPanelWithText extends BasicPanel {
         g.drawString(text, 0, getHeight() / 2 + 6);
     }
 
-
+    public void setText(String text) {
+        this.text = text;
+        repaint();
+    }
 }

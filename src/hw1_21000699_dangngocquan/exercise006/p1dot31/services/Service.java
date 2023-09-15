@@ -7,6 +7,8 @@ import hw1_21000699_dangngocquan.exercise006.p1dot31.models.Fish;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -79,6 +81,7 @@ public class Service {
     public static void addNewBears(
             Animal[] animals, List<Bear> bears,
             List<Integer> indexes, int numberBearIncrease) {
+        numberBearIncrease = Math.min(numberBearIncrease, indexes.size());
         for (int i = 0; i < numberBearIncrease; i++) {
             Integer index = getRandomValueOfList(indexes);
             if (index != null) {
@@ -93,6 +96,7 @@ public class Service {
     public static void addNewFishes(
             Animal[] animals, List<Fish> fishes,
             List<Integer> indexes, int numberFishIncrease) {
+        numberFishIncrease = Math.min(numberFishIncrease, indexes.size());
         for (int i = 0; i < numberFishIncrease; i++) {
             Integer index = getRandomValueOfList(indexes);
             if (index != null) {
@@ -128,8 +132,6 @@ public class Service {
         // Solve when has disputed area (a location has more animals)
         int numberBearIncrease = 0;
         int numberFishIncrease = 0;
-        int numberBearDied = 0;
-        int numberFishDied = 0;
         for (int i = 0; i < locations.length; i++) {
             if (locations[i].size() > 1) {
                 List<Animal> tempBears = new LinkedList<>();
@@ -144,17 +146,15 @@ public class Service {
 
                 // Calculate number bear increase, number fish increase, number fish died to use later
                 if (tempBears.size() > 0) {
-                    numberBearIncrease += (tempBears.size() * (tempBears.size()-1))/2;
+                    numberBearIncrease += tempBears.size()/2;
                     if (tempFishes.size() > 0) {
-                        numberFishIncrease += (tempFishes.size() * (tempFishes.size()-1))/2;
-                        numberFishDied += tempFishes.size();
+                        numberFishIncrease += tempFishes.size()/2;
                     }
                 } else {
                     if (tempFishes.size() > 0) {
                         numberFishIncrease += (tempFishes.size() * (tempFishes.size()-1))/2;
                     }
                 }
-
 
                 // Solve
                 if (tempBears.size() > 0) {

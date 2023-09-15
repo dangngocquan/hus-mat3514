@@ -22,9 +22,9 @@ public class Config {
     // Color
     public static Color COLOR_TEXT = new Color(20, 20, 20);
     public static Color BACKGROUND_COLOR_APP = new Color(255, 255, 255);
-    public static Color BACKGROUND_COLOR_CONTROLLER_VIEW = new Color(200, 207, 239);
-    public static Color BACKGROUND_COLOR_ECOSYSTEM_VIEW = new Color(229, 246, 230);
-    public static Color BACKGROUND_COLOR_ECOSYSTEM_TABLE = new Color(243, 220, 220);
+    public static Color BACKGROUND_COLOR_CONTROLLER_VIEW = new Color(244, 229, 255);
+    public static Color BACKGROUND_COLOR_ECOSYSTEM_VIEW = new Color(255, 255, 255);
+    public static Color BACKGROUND_COLOR_ECOSYSTEM_TABLE = new Color(255, 255, 255);
     public static Color BACKGROUND_COLOR_ECOSYSTEM_CELL = new Color(255, 255, 255);
     public static Color BORDER_COLOR_ECOSYSTEM_CELL = new Color(148, 147, 147);
 

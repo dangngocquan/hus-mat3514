@@ -40,27 +40,43 @@ public class EcosystemTable extends BasicPanel {
             int initialNumberBear,
             int initialNumberFish) {
         animals = new Animal[ecosystemSize * ecosystemSize];
-        bears = new LinkedList<>();
-        fishes = new LinkedList<>();
+
+        if (bears == null) {
+            bears = new LinkedList<>();
+        } else {
+            bears.clear();
+        }
+        if (fishes == null) {
+            fishes = new LinkedList<>();
+        } else {
+            fishes.clear();
+        }
         Service.createRandomAnimals(
                 initialNumberBear, initialNumberFish,
                 animals, bears, fishes);
     }
 
     public void addEcosystemCells() {
-        this.removeAll();
-        ecosystemCells = new EcosystemCell[size][size];
+        if (ecosystemCells == null) {
+            ecosystemCells = new EcosystemCell[size][size];
+        }
         int sizeCell = getWidth() / size;
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                ecosystemCells[i][j] = new EcosystemCell(
-                        j * sizeCell,
-                        i * sizeCell,
-                        sizeCell,
-                        sizeCell,
-                        animals[i*size+j]
-                );
-                this.add(ecosystemCells[i][j]);
+                if (ecosystemCells[i][j] == null) {
+                    ecosystemCells[i][j] = new EcosystemCell(
+                            j * sizeCell,
+                            i * sizeCell,
+                            sizeCell,
+                            sizeCell,
+                            animals[i*size+j]
+                    );
+                    this.add(ecosystemCells[i][j]);
+                } else {
+                    ecosystemCells[i][j].setAnimal(animals[i*size+j]);
+                    ecosystemCells[i][j].repaint();
+                }
+
             }
         }
         repaint();

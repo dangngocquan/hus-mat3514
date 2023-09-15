@@ -25,20 +25,20 @@ public class EcosystemView extends BasicPanel {
     }
 
     public void addEcosystemTable(int size, int initialNumberBear, int initialNumberFish) {
-        this.ecosystemTable = new EcosystemTable (
-                (Config.WIDTH_ECOSYSTEM_VIEW_COMPONENT - Config.WIDTH_ECOSYSTEM_TABLE) / 2,
-                10,
-                Config.WIDTH_ECOSYSTEM_TABLE,
-                Config.HEIGHT_ECOSYSTEM_TABLE,
-                size,
-                initialNumberBear,
-                initialNumberFish
-        );
-        this.add(ecosystemTable);
+            this.ecosystemTable = new EcosystemTable (
+                    (Config.WIDTH_ECOSYSTEM_VIEW_COMPONENT - Config.WIDTH_ECOSYSTEM_TABLE) / 2,
+                    10,
+                    Config.WIDTH_ECOSYSTEM_TABLE,
+                    Config.HEIGHT_ECOSYSTEM_TABLE,
+                    size,
+                    initialNumberBear,
+                    initialNumberFish
+            );
+            this.add(ecosystemTable);
     }
 
     public void rerenderWithInitialDataInput(int ecosystemSize, int initialNumberBear, int initialNumberFish) {
-        this.removeAll();
+        removeAll();
         addEcosystemTable(ecosystemSize, initialNumberBear, initialNumberFish);
         repaint();
     }

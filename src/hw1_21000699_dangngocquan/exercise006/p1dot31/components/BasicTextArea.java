@@ -29,8 +29,8 @@ public class BasicTextArea extends JTextArea {
         setLayout(null);
         setSize(width, height);
         setBounds(x, y, width, height);
-        setForeground(new Color(75, 255, 0));
-        setBorder(new LineBorder(new Color(210, 106, 106), thickness, true));
+        setForeground(new Color(0, 0, 0));
+        setBorder(new LineBorder(new Color(114, 114, 114), thickness, true));
         setLineWrap(true);
         setWrapStyleWord(true);
         setFont(Config.ARIAL_BOLD_12);
