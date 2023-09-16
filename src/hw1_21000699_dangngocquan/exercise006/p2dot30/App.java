@@ -7,7 +7,7 @@ public class App extends JFrame {
     private BasicPanel viewComponent = null;
     private BasicPanel inputComponent = null;
     public App() {
-        super("P1.30");
+        super("P2.30");
         setSize(Config.DEVICE_WIDTH, Config.DEVICE_HEIGHT);
         setResizable(false);
         setAlwaysOnTop(false);

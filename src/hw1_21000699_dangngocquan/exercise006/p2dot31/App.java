@@ -13,7 +13,7 @@ public class App extends JFrame {
     private boolean isEcosystemRunning = false;
 
     public App() {
-        super("P1.31");
+        super("P2.31");
         setSize(Config.DEVICE_WIDTH, Config.DEVICE_HEIGHT);
         setResizable(false);
         setAlwaysOnTop(false);
