@@ -2,6 +2,7 @@ package hw2_21000699_dangngocquan.exercise003.services.animation;
 
 
 import hw2_21000699_dangngocquan.exercise003.components.Panel;
+import hw2_21000699_dangngocquan.exercise003.components.ViewCard;
 
 import javax.swing.*;
 import java.util.Timer;
@@ -33,7 +34,7 @@ public class PanelTransform {
     public void start() {
         timer = new Timer();
         msStart = System.currentTimeMillis() + delay;
-        timer.schedule(new TaskAnimation(), delay, 10);
+        timer.schedule(new TaskAnimation(), delay, 1);
     }
 
     public void stop() {

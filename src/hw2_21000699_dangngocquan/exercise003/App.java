@@ -20,9 +20,8 @@ public class App extends JFrame {
         setBackground(Config.BACKGROUND_COLOR_APP);
         setFont(Config.ARIAL_BOLD_12);
 
-        addViewCards();
         addViewController();
-
+        addViewCards();
 
         setVisible(true);
     }

@@ -29,7 +29,11 @@ public class Config {
         "2", "3", "4", "5", "6", "7", "8", "9", "10",
                 "jack", "queen", "king", "ace"
     };
+
     public static String[] CARD_SUITS = new String[] {"spades", "clubs", "diamonds", "hearts"};
+
+    // Speech
+    public static int MILLISECONDS_PER_ACTION = 200;
 
     public Config() {
         try {

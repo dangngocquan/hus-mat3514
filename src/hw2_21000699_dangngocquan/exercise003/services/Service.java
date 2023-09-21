@@ -2,13 +2,13 @@ package hw2_21000699_dangngocquan.exercise003.services;
 
 import hw2_21000699_dangngocquan.exercise003.Config;
 import hw2_21000699_dangngocquan.exercise003.components.ViewCard;
-import hw2_21000699_dangngocquan.exercise003.components.ViewCards;
 import hw2_21000699_dangngocquan.exercise003.models.Card;
-import hw2_21000699_dangngocquan.exercise003.services.animation.Animation;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Service {
     public static void sortCards(Card[] a) {
@@ -28,14 +28,33 @@ public class Service {
         return theFrame;
     }
 
-    public static Card[] createCards() {
-        Card[] cards = new Card[52];
-        for (int i = 0; i < 52; i++) {
+    public static int getRandomNumber(int from, int to) {
+        int range = to - from;
+        int randomNum = (int) (Math.floor(Math.random() * range)) + from;
+        return randomNum;
+    }
+
+    public static Integer getRandomValueOfList(List<Integer> values) {
+        if (values.size() == 0) return null;
+        int randomIndex = getRandomNumber(0, values.size());
+        int value = values.get(randomIndex);
+        return value;
+    }
+
+    public static Card[] createCards(int numberCards, int maxRankCard) {
+        List<Integer> list = new LinkedList<>();
+        int listSize = (maxRankCard + 1) * 4;
+        for (int i = 0; i < listSize; i++) list.add(i);
+
+        Card[] cards = new Card[numberCards];
+        for (int i = 0; i < numberCards; i++) {
+            int randomIndex = getRandomValueOfList(list);
+            list.remove(Integer.valueOf(randomIndex));
             cards[i] = new Card(
-                    i/4,
-                    i%4,
-                    Config.CARD_RANKS[i/4],
-                    Config.CARD_SUITS[i%4]
+                    randomIndex/4,
+                    randomIndex%4,
+                    Config.CARD_RANKS[randomIndex/4],
+                    Config.CARD_SUITS[randomIndex%4]
             );
         }
         return cards;
@@ -48,53 +67,5 @@ public class Service {
             viewCards[i] = viewCards[j];
             viewCards[j] = temp;
         }
-    }
-
-    public static void swapViewCards(ViewCard[] viewCards, int i1, int i2, double dx) {
-        ViewCard viewCard1 = viewCards[i1];
-        ViewCard viewCard2 = viewCards[i2];
-        viewCards[i1] = viewCard2;
-        viewCards[i2] = viewCard1;
-
-        double speed = 2;
-        int delay1 = (int) (1000 / speed);
-        int duration1 = (int) (500 / speed);
-        int delay2 = delay1 + duration1;
-        int duration2 = (int) (500/speed);
-        int delay3 = delay2 + duration2;
-        int duration3 = (int)(500/speed);
-
-        Animation.translate(
-                viewCard1,
-                0,
-                viewCard1.getHeight() + 10,
-                delay1, duration1, viewCards.length - 1 - i1);
-        Animation.translate(
-                viewCard1,
-                (int) (dx * (i2 - i1)),
-                0,
-                delay2, duration2, viewCards.length - 1 - i2);
-        Animation.translate(
-                viewCard1,
-                0,
-                - viewCard1.getHeight() - 10,
-                delay3, duration3, viewCards.length - 1 - i2);
-
-        Animation.translate(
-                viewCard2,
-                0,
-                viewCard2.getHeight() + 10,
-                delay1, duration1, viewCards.length-1-i2);
-        Animation.translate(
-                viewCard2,
-                (int) (dx * (i1 - i2)),
-                0,
-                delay2, duration2, viewCards.length-1-i1);
-        Animation.translate(
-                viewCard2,
-                0,
-                - viewCard2.getHeight() - 10,
-                delay3, duration3, viewCards.length-1-i1);
-
     }
 }

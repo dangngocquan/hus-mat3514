@@ -161,7 +161,7 @@ public class Service {
                     }
                 }
 
-                // Calculate number bear increase, number fish increase, number fish died to use later
+                // Calculate number bear increase, number fish increase to use later
                 if (tempBears0.size() > 0 && tempBears1.size() > 0) {
                     numberBearIncrease++;
                 }

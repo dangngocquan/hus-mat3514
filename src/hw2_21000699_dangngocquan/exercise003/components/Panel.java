@@ -33,6 +33,7 @@ public class Panel extends JPanel {
         setBounds(x, y, width, height);
         setFont(Config.ARIAL_BOLD_12);
         setIgnoreRepaint(true);
+        setBackground(backgroundColor);
 
         setVisible(true);
     }
@@ -51,6 +52,11 @@ public class Panel extends JPanel {
         this.x = x;
         this.y = y;
         setBounds(x, y, width, height);
+    }
+
+    public void setText(String text) {
+        this.text = text;
+        repaint();
     }
 
 
