@@ -296,6 +296,7 @@ public class ViewController extends Panel {
                         getMaxRankCard()
                 );
                 viewCards.shuffleCards();
+                setChangedInput(false);
             }
         });
 
@@ -367,8 +368,31 @@ public class ViewController extends Panel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ViewCards viewCards = (ViewCards) getApp().getViewCards();
-                Sort.insertionSort(viewCards.getViewCards());
-                viewCards.updateViewCards();
+                if (isChangedInput()) {
+                    setChangedInput(false);
+                    viewCards.addViewCards(
+                            getNumberCards(),
+                            getMaxRankCard()
+                    );
+                    viewCards.shuffleCards();
+                }
+
+                if (isRunningAlgorithm[2]) {
+                    setEnableAllButton(true);
+                    setEnableAllInput(true);
+                    isRunningAlgorithm[2] = false;
+                    buttonPlayInsertionSort.setText("Run Insertion Sort");
+                    timer.cancel();
+                    timer.purge();
+                } else {
+                    setEnableAllButton(false);
+                    setEnableAllInput(false);
+                    buttonPlayInsertionSort.setEnabled(true);
+                    isRunningAlgorithm[2] = true;
+                    buttonPlayInsertionSort.setText("Stop Insertion Sort");
+                    timer = new Timer();
+                    Sort.insertionSortWithAnimation(timer, viewCards, Config.MILLISECONDS_PER_ACTION * getSlowerScale());
+                }
             }
         });
 
@@ -385,8 +409,31 @@ public class ViewController extends Panel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ViewCards viewCards = (ViewCards) getApp().getViewCards();
-                Sort.quickSort(viewCards.getViewCards());
-                viewCards.updateViewCards();
+                if (isChangedInput()) {
+                    setChangedInput(false);
+                    viewCards.addViewCards(
+                            getNumberCards(),
+                            getMaxRankCard()
+                    );
+                    viewCards.shuffleCards();
+                }
+
+                if (isRunningAlgorithm[4]) {
+                    setEnableAllButton(true);
+                    setEnableAllInput(true);
+                    isRunningAlgorithm[4] = false;
+                    buttonPlayQuickSort.setText("Run Quick Sort");
+                    timer.cancel();
+                    timer.purge();
+                } else {
+                    setEnableAllButton(false);
+                    setEnableAllInput(false);
+                    buttonPlayQuickSort.setEnabled(true);
+                    isRunningAlgorithm[4] = true;
+                    buttonPlayQuickSort.setText("Stop Quick Sort");
+                    timer = new Timer();
+                    Sort.quickSortWithAnimation(timer, viewCards, Config.MILLISECONDS_PER_ACTION * getSlowerScale());
+                }
             }
         });
 

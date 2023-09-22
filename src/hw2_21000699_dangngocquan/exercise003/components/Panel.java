@@ -38,6 +38,38 @@ public class Panel extends JPanel {
         setVisible(true);
     }
 
+    @Override
+    public int getX() {
+        return x;
+    }
+
+    @Override
+    public int getY() {
+        return y;
+    }
+
+    @Override
+    public int getWidth() {
+        return width;
+    }
+
+    @Override
+    public int getHeight() {
+        return height;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public Color getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    public ImageIcon getBackgroundImage() {
+        return backgroundImage;
+    }
+
     public void setX(int x) {
         this.x = x;
         setBounds(x, y, width, height);

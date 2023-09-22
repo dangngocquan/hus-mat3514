@@ -18,4 +18,11 @@ public class ViewCard extends Panel implements Comparable<ViewCard> {
     public int compareTo(ViewCard o) {
         return card.compareTo(o.getCard());
     }
+
+    @Override
+    public String toString() {
+        return "ViewCard{" +
+                "card=" + card +
+                '}';
+    }
 }

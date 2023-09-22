@@ -3,6 +3,7 @@ package hw2_21000699_dangngocquan.exercise003.services.sort;
 
 import hw2_21000699_dangngocquan.exercise003.components.ViewCard;
 import hw2_21000699_dangngocquan.exercise003.components.ViewCards;
+import hw2_21000699_dangngocquan.exercise003.services.animation.Location;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -57,10 +58,21 @@ public class BubbleSort {
                 if (v1.compareTo(v2) > 0) {
                     viewCards.pickAndSwapCards(j-1, j, 10,  period - 20);
                 } else {
-                    viewCards.pickUp1(j-1, 10, (period - 40) / 2);
-                    viewCards.pickUp1(j, 10, (period - 40) / 2);
-                    viewCards.pickDown1(j-1, (period - 40) / 2 + 10, (period - 40) / 2);
-                    viewCards.pickDown1(j, (period - 40) / 2 + 10, (period - 40) / 2);
+                    int delay1 = 10;
+                    int duration1 = (period - 40) / 2;
+                    Location l11 = new Location(viewCards.getLocationX(j-1), 10);
+                    Location l21 = new Location(viewCards.getLocationX(j), 10);
+
+                    int delay2 = delay1 + duration1 + 10;
+                    int duration2 = (period - 40) / 2;
+                    Location l12 = new Location(l11.getX(), l11.getY() + v1.getHeight() / 4);
+                    Location l22 = new Location(l21.getX(), l21.getY() + v2.getHeight() / 4);
+
+                    viewCards.pickUp1(j-1, l11, delay1, duration1);
+                    viewCards.pickUp1(j, l21, delay1, duration1);
+
+                    viewCards.pickDown1(j-1, l12, delay2, duration2);
+                    viewCards.pickDown1(j, l22, delay2, duration2);
                 }
                 j++;
             }

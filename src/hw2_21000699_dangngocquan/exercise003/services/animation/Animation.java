@@ -6,12 +6,12 @@ import javax.swing.*;
 
 public class Animation {
     public static void translate(
-            Panel panel,
+            Panel panel, Location locationStart,
             int translateX, int translateY,
             int delay, int duration,
             int zOrder) {
         (new PanelTransform(
-                panel,
+                panel, locationStart,
                 translateX, translateY,
                 delay, duration, zOrder)
         ).start();

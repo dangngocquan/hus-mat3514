@@ -27,11 +27,19 @@ public class Sort {
         InsertionSort.sort(a);
     }
 
+    public static <T extends Comparable<T>> void insertionSortWithAnimation(Timer timer, ViewCards viewCards, int period) {
+        InsertionSort.sortWithAnimation(timer, viewCards, period);
+    }
+
     public static <T extends Comparable<T>> void mergeSort(T[] a) {
         MergeSort.sort(a);
     }
 
     public static <T extends Comparable<T>> void quickSort(T[] a) {
         QuickSort.sort(a);
+    }
+
+    public static <T extends Comparable<T>> void quickSortWithAnimation(Timer timer, ViewCards viewCards, int period) {
+        QuickSort.sortWithAnimation(timer, viewCards, period);
     }
 }

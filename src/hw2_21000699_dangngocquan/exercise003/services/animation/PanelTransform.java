@@ -2,7 +2,6 @@ package hw2_21000699_dangngocquan.exercise003.services.animation;
 
 
 import hw2_21000699_dangngocquan.exercise003.components.Panel;
-import hw2_21000699_dangngocquan.exercise003.components.ViewCard;
 
 import javax.swing.*;
 import java.util.Timer;
@@ -16,19 +15,19 @@ public class PanelTransform {
     private int delay;
     private int duration;
     private int zOrder;
-    private int x0;
-    private int y0;
+    private Location locationStart;
     private long msStart;
     private double process = 0.0;
 
 
-    public PanelTransform(Panel panel, int translateX, int translateY, int delay, int duration, int zOrder) {
+    public PanelTransform(Panel panel, Location start, int translateX, int translateY, int delay, int duration, int zOrder) {
         this.panel = panel;
         this.translateX = translateX;
         this.translateY = translateY;
         this.delay = delay;
         this.duration = duration;
         this.zOrder = zOrder;
+        this.locationStart = start;
     }
 
     public void start() {
@@ -38,6 +37,8 @@ public class PanelTransform {
     }
 
     public void stop() {
+        panel.getParent().setComponentZOrder(panel, zOrder);
+        panel.setXY(locationStart.getX() + translateX, locationStart.getY() + translateY);
         timer.cancel();
         timer.purge();
     }
@@ -47,19 +48,14 @@ public class PanelTransform {
 
         @Override
         public void run() {
-            if (Double.compare(process, 0.0) == 0) {
-                x0 = panel.getX();
-                y0 = panel.getY();
-                panel.getParent().setComponentZOrder(panel, zOrder);
-            }
-            process = (System.currentTimeMillis() - msStart) * 1.0 / duration;
+            long temp = System.currentTimeMillis() - msStart;
+            process = temp * 1.0 / duration;
             if (process >= 1f) {
-                panel.setXY(x0 + translateX, y0 + translateY);
                 stop();
                 return;
             }
-            double x = x0 + process * translateX;
-            double y = y0 + process * translateY;
+            double x = locationStart.getX() + process * translateX;
+            double y = locationStart.getY() + process * translateY;
             panel.setXY(
                     (int) Math.round(x),
                     (int) Math.round(y)
