@@ -33,7 +33,7 @@ public class Config {
     public static String[] CARD_SUITS = new String[] {"spades", "clubs", "diamonds", "hearts"};
 
     // Speech
-    public static int MILLISECONDS_PER_ACTION = 200;
+    public static int MILLISECONDS_PER_ACTION = 280;
 
     public Config() {
         try {

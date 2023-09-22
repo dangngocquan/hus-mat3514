@@ -40,57 +40,62 @@ public class SelectionSort {
             this.viewCards = viewCards;
             this.period = period;
             i = 0;
-            j = i+1;
+            j = i;
             indexOfMinValue = i;
-            if (i < viewCards.getViewCards().length) {
-                viewCards.pickUp5(i, 0, (period - 40) / 4);
-            }
         }
 
         @Override
         public void run() {
-            if (j >= viewCards.getViewCards().length) {
-                if (indexOfMinValue != i) {
-                    int delay1 = 0;
-                    int duration1 = (period - 40) / 4;
-                    viewCards.pickUp3(indexOfMinValue, delay1, duration1);
-                    int delay2 = delay1 + duration1 + 10;
-                    int duration2 = (period - 40) / 4;
-                    viewCards.swap(i, indexOfMinValue, delay2, duration2);
-                    int delay3 = delay2 + duration2 + 10;
-                    int duration3 = (period - 40) / 4;
-                    viewCards.pickDown5(i, delay3, duration3);
-                    viewCards.pickDown5(indexOfMinValue, delay3, duration3);
-                } else {
-                    viewCards.pickDown5(i, 0, (period - 40) / 4 * 3);
-                }
-                i++;
-                indexOfMinValue = i;
-                j = i+1;
-                if (i < viewCards.getViewCards().length - 1) {
-                    viewCards.pickUp5(i, (period - 40) / 4 * 3 + 10, (period - 40) / 4);
-                } else {
-                    timer.cancel();
-                    timer.purge();
-                }
+            System.out.println(i + " " + j);
+            if (i >= viewCards.getViewCards().length - 1) {
+                viewCards.pickDown1(viewCards.getViewCards().length - 1, 10, period - 20);
+                timer.cancel();
+                timer.purge();
             } else {
-                if (i >= viewCards.getViewCards().length-1) {
-                    timer.cancel();
-                    timer.purge();
+                if (j == i) {
+                    int delay1 = 10;
+                    int duration1 = (period - 40) / 2;
+                    int delay2 = delay1 + duration1 + 10;
+                    int duration2 = (period - 40) / 2;
+                    if (i == 0) {
+                        viewCards.pickUp1All(i, viewCards.getViewCards().length-1, delay1, duration1);
+                        viewCards.pickUp2(indexOfMinValue, delay2, duration2);
+                    } else {
+                        viewCards.pickUp2(indexOfMinValue, delay2, duration2);
+                    }
+                    j++;
+                } else if (j >= viewCards.getViewCards().length) {
+                    if (indexOfMinValue != i) {
+                        int delay1 = 10;
+                        int duration1 = (period - 40) / 4;
+                        viewCards.pickUp2(i, delay1, duration1);
+                        int delay2 = delay1 + duration1 + 10;
+                        int duration2 = (period - 40) / 2;
+                        viewCards.swap(i, indexOfMinValue, delay2, duration2);
+                        int delay3 = delay2 + duration2 + 10;
+                        int duration3 = (period - 40) / 4;
+                        viewCards.pickDown3(i, delay3, duration3);
+                        viewCards.pickDown2(indexOfMinValue, delay3, duration3);
+                    } else {
+                        viewCards.pickDown3(i, 10, period - 20);
+                    }
+                    i++;
+                    j = i;
+                    indexOfMinValue = i;
                 } else {
                     ViewCard v1 = viewCards.getViewCards()[indexOfMinValue];
                     ViewCard v2 = viewCards.getViewCards()[j];
                     if (v2.compareTo(v1) < 0) {
-                        if (indexOfMinValue == i) {
-                            viewCards.pickUp2(j, 0, (period - 40) / 2);
-                        } else {
-                            viewCards.pickUp2(j, 0, (period - 40) / 2);
-                            viewCards.pickDown2(indexOfMinValue, 0, (period - 40) / 2);
-                        }
+                        viewCards.pickDown2(indexOfMinValue, 10, period - 40);
+                        viewCards.pickUp2(j, 10, period - 40);
                         indexOfMinValue = j;
                     } else {
-                        viewCards.pickUp1(j, 0, (period - 40) / 2);
-                        viewCards.pickDown1(j, (period - 20) / 2, (period - 40) / 2);
+                        int delay1 = 10;
+                        int duration1 = (period - 40) / 2;
+                        viewCards.pickUp1(j, delay1, duration1);
+                        int delay2 = delay1 + duration1 + 10;
+                        int duration2 = (period - 40) / 2;
+                        viewCards.pickDown1(j, delay2, duration2);
                     }
                     j++;
                 }

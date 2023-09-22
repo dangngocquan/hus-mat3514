@@ -25,7 +25,7 @@ public class ViewCards extends Panel {
         repaint();
         Card[] cards = Service.createCards(numberCards, maxRankCard);
         viewCards = new ViewCard[cards.length];
-        widthPerCard = (int) (Config.WIDTH_OF_CARD / 3);
+        widthPerCard = (Config.WIDTH_OF_CARD / 3 / 4 * 4);
         dx = (Config.WIDTH - widthPerCard - 20) * 1.0 / (cards.length - 1);
         scale = widthPerCard * 1.0 / Config.WIDTH_OF_CARD;
         for (int i = 0; i < viewCards.length; i++) {
@@ -60,14 +60,14 @@ public class ViewCards extends Panel {
 
     }
 
-    public void pickAndSwapCards(int i1, int i2, int duration) {
+    public void pickAndSwapCards(int i1, int i2, int delay, int duration) {
         ViewCard viewCard1 = viewCards[i1];
         ViewCard viewCard2 = viewCards[i2];
         viewCards[i1] = viewCard2;
         viewCards[i2] = viewCard1;
 
-        duration = duration - 20;
-        int delay1 = 0;
+        duration = duration - 40;
+        int delay1 = delay + 10;
         int duration1 = duration / 4;
         int delay2 = delay1 + duration1 + 10;
         int duration2 = duration / 2;
@@ -86,8 +86,6 @@ public class ViewCards extends Panel {
         ViewCard viewCard2 = viewCards[i2];
         viewCards[i1] = viewCard2;
         viewCards[i2] = viewCard1;
-
-        duration = duration - 20;
 
         Animation.translate(viewCard1, (int) (dx * (i2 - i1)), 0, delay, duration, viewCards.length-1-i2);
         Animation.translate(viewCard2, (int) (dx * (i1 - i2)), 0, delay, duration, viewCards.length-1-i1);
@@ -123,5 +121,17 @@ public class ViewCards extends Panel {
 
     public void pickDown5(int i, int delay, int duration) {
         Animation.translate(viewCards[i], 0, -viewCards[i].getHeight() / 4 * 5, delay, duration, viewCards.length-1-i);
+    }
+
+    public void pickUp1All(int i1, int i2, int delay, int duration) {
+        for (int i = i1; i <= i2; i++) {
+            pickUp1(i, delay, duration);
+        }
+    }
+
+    public void pickDown1All(int i1, int i2, int delay, int duration) {
+        for (int i = i1; i <= i2; i++) {
+            pickDown1(i, delay, duration);
+        }
     }
 }

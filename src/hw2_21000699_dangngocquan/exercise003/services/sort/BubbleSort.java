@@ -55,13 +55,12 @@ public class BubbleSort {
                 ViewCard v1 = viewCards.getViewCards()[j-1];
                 ViewCard v2 = viewCards.getViewCards()[j];
                 if (v1.compareTo(v2) > 0) {
-                    viewCards.pickAndSwapCards(j-1, j, period - 20);
+                    viewCards.pickAndSwapCards(j-1, j, 10,  period - 20);
                 } else {
-
-                    viewCards.pickUp1(j-1, 0, (period - 40) / 2);
-                    viewCards.pickUp1(j, 0, (period - 40) / 2);
-                    viewCards.pickDown1(j-1, (period - 20) / 2, (period - 40) / 2);
-                    viewCards.pickDown1(j, (period - 20) / 2, (period - 40) / 2);
+                    viewCards.pickUp1(j-1, 10, (period - 40) / 2);
+                    viewCards.pickUp1(j, 10, (period - 40) / 2);
+                    viewCards.pickDown1(j-1, (period - 40) / 2 + 10, (period - 40) / 2);
+                    viewCards.pickDown1(j, (period - 40) / 2 + 10, (period - 40) / 2);
                 }
                 j++;
             }
