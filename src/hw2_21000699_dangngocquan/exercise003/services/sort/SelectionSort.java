@@ -35,6 +35,7 @@ public class SelectionSort {
         private int i;
         private int j;
         private int indexOfMinValue;
+        private int animationStep;
 
         public Task(Timer timer, ViewCards viewCards, int period) {
             this.timer = timer;
@@ -52,63 +53,62 @@ public class SelectionSort {
                 timer.purge();
             } else {
                 if (j == i) {
-                    Location l = new Location(viewCards.getLocationX(indexOfMinValue), 10);
-                    viewCards.pickUp2(indexOfMinValue, l, 10, period - 20);
+                    Location l = new Location(viewCards.xCards[indexOfMinValue], viewCards.y0Card);
+                    viewCards.pickUp2(indexOfMinValue, l, 10, period - 10);
                     j++;
                 } else if (j >= viewCards.getViewCards().length) {
                     if (indexOfMinValue != i) {
-                        Location l11 = new Location(viewCards.getLocationX(i), 10);
-                        int delay1 = 10;
-                        int duration1 = (period - 40) / 4;
-
-                        Location l12 = new Location(l11.getX(), l11.getY() + viewCards.getViewCards()[i].getHeight() / 4 * 2);
-                        Location l22 = new Location(viewCards.getLocationX(indexOfMinValue), l12.getY());
-                        int delay2 = delay1 + duration1 + 10;
-                        int duration2 = (period - 40) / 2;
-
-//                        Location l13 = new Location(l22.getX(), l22.getY());
-//                        Location l23 = new Location(l12.getX(), l12.getY());
-                        int delay3 = delay2 + duration2 + 10;
-                        int duration3 = (period - 40) / 4;
-
-                        viewCards.pickUp2(i, l11, delay1, duration1);
-                        viewCards.swap(i, l12, indexOfMinValue, l22, delay2, duration2);
-                        viewCards.pickDown2(i, l12, delay3, duration3);
-                        viewCards.pickDown2(indexOfMinValue, l22, delay3, duration3);
+                        if (animationStep == 0) {
+                            Location l = new Location(viewCards.xCards[i], viewCards.y0Card);
+                            viewCards.pickUp2(i, l, 10, period - 10);
+                            animationStep++;
+                        } else if (animationStep == 1) {
+                            Location l1 = new Location(viewCards.xCards[i], viewCards.y2Card);
+                            Location l2 = new Location(viewCards.xCards[indexOfMinValue], viewCards.y2Card);
+                            viewCards.swap(i, l1, indexOfMinValue, l2, 10, period - 10);
+                            animationStep++;
+                        } else if (animationStep == 2) {
+                            Location l1 = new Location(viewCards.xCards[i], viewCards.y2Card);
+                            Location l2 = new Location(viewCards.xCards[indexOfMinValue], viewCards.y2Card);
+                            viewCards.pickDown2(i, l1, 10, period - 10);
+                            viewCards.pickDown2(indexOfMinValue, l2, 10, period - 10);
+                            animationStep = 0;
+                            i++;
+                            j = i;
+                            indexOfMinValue = i;
+                        }
                     } else {
-                        Location l = new Location(viewCards.getLocationX(i), 10 + viewCards.getViewCards()[i].getHeight() / 4 * 2);
-                        viewCards.pickDown2(i, l, 10, period - 20);
+                        Location l = new Location(viewCards.xCards[i], viewCards.y2Card);
+                        viewCards.pickDown2(i, l, 10, period - 10);
+                        i++;
+                        j = i;
+                        indexOfMinValue = i;
                     }
-                    i++;
-                    j = i;
-                    indexOfMinValue = i;
                 } else {
                     ViewCard v1 = viewCards.getViewCards()[indexOfMinValue];
                     ViewCard v2 = viewCards.getViewCards()[j];
                     if (v2.compareTo(v1) < 0) {
                         Location l1 = new Location(
-                                viewCards.getLocationX(indexOfMinValue),
-                                10 + viewCards.getViewCards()[i].getHeight() / 4 * 2);
+                                viewCards.xCards[indexOfMinValue], viewCards.y2Card);
                         Location l2 = new Location(
-                                viewCards.getLocationX(j),
-                                10);
+                                viewCards.xCards[j], viewCards.y0Card);
 
-                        viewCards.pickDown2(indexOfMinValue, l1, 10, period - 40);
-                        viewCards.pickUp2(j, l2, 10, period - 40);
+                        viewCards.pickDown2(indexOfMinValue, l1, 10, period - 10);
+                        viewCards.pickUp2(j, l2, 10, period - 10);
                         indexOfMinValue = j;
+                        j++;
                     } else {
-                        Location l1 = new Location(viewCards.getLocationX(j), 10);
-                        int delay1 = 10;
-                        int duration1 = (period - 40) / 2;
-
-                        Location l2 = new Location(l1.getX(), 10 + viewCards.getViewCards()[i].getHeight() / 4);
-                        int delay2 = delay1 + duration1 + 10;
-                        int duration2 = (period - 40) / 2;
-
-                        viewCards.pickUp1(j, l1, delay1, duration1);
-                        viewCards.pickDown1(j, l2, delay2, duration2);
+                        if (animationStep == 0) {
+                            Location l1 = new Location(viewCards.xCards[j], viewCards.y0Card);
+                            viewCards.pickUp1(j, l1, 10, period - 10);
+                            animationStep++;
+                        } else if (animationStep == 1) {
+                            Location l2 = new Location(viewCards.xCards[j], viewCards.y1Card);
+                            viewCards.pickDown1(j, l2, 10, period - 10);
+                            animationStep = 0;
+                            j++;
+                        }
                     }
-                    j++;
                 }
             }
 

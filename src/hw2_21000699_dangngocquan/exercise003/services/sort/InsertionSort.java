@@ -51,34 +51,31 @@ public class InsertionSort {
             } else {
                 if (j < 0) {
                     Location l = new Location(
-                            viewCards.getLocationX(0),
-                            10 + viewCards.getViewCards()[i].getHeight() / 4 * 2);
-                    viewCards.pickDown2(0, l,10, period - 20);
+                            viewCards.xCards[0], viewCards.y2Card);
+                    viewCards.pickDown2(0, l,10, period - 10);
                     i++;
                     j = i;
                 } else if (j == i) {
                     Location l = new Location(
-                            viewCards.getLocationX(i),
+                            viewCards.xCards[i],
                             10);
-                    viewCards.pickUp2(i, l, 10, period - 20);
+                    viewCards.pickUp2(i, l, 10, period - 10);
                     j--;
                 } else {
                     ViewCard v1 = viewCards.getViewCards()[j];
                     ViewCard v2 = viewCards.getViewCards()[j+1];
                     if (v1.compareTo(v2) > 0) {
                         Location l1 = new Location(
-                                viewCards.getLocationX(j),
+                                viewCards.xCards[j],
                                 10 );
                         Location l2 = new Location(
-                                viewCards.getLocationX(j+1),
-                                10 + viewCards.getViewCards()[i].getHeight() / 4 * 2);
-                        viewCards.swap(j, l1, j+1, l2, 10, period - 20);
+                                viewCards.xCards[j+1], viewCards.y2Card);
+                        viewCards.swap(j, l1, j+1, l2, 10, period - 10);
                         j--;
                     } else {
                         Location l = new Location(
-                                viewCards.getLocationX(j+1),
-                                10 + viewCards.getViewCards()[i].getHeight() / 4 * 2);
-                        viewCards.pickDown2(j+1, l ,10, period - 20);
+                                viewCards.xCards[j+1], viewCards.y2Card);
+                        viewCards.pickDown2(j+1, l ,10, period - 10);
                         i++;
                         j = i;
                     }

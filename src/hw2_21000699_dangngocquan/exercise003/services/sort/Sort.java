@@ -35,6 +35,10 @@ public class Sort {
         MergeSort.sort(a);
     }
 
+    public static <T extends Comparable<T>> void mergeSortWithAnimation(Timer timer, ViewCards viewCards, int period) {
+        MergeSort.sortWithAnimation(timer, viewCards, period);
+    }
+
     public static <T extends Comparable<T>> void quickSort(T[] a) {
         QuickSort.sort(a);
     }

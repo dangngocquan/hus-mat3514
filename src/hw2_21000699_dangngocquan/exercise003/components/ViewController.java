@@ -400,8 +400,31 @@ public class ViewController extends Panel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ViewCards viewCards = (ViewCards) getApp().getViewCards();
-                Sort.mergeSort(viewCards.getViewCards());
-                ((ViewCards) getApp().getViewCards()).updateViewCards();
+                if (isChangedInput()) {
+                    setChangedInput(false);
+                    viewCards.addViewCards(
+                            getNumberCards(),
+                            getMaxRankCard()
+                    );
+                    viewCards.shuffleCards();
+                }
+
+                if (isRunningAlgorithm[3]) {
+                    setEnableAllButton(true);
+                    setEnableAllInput(true);
+                    isRunningAlgorithm[3] = false;
+                    buttonPlayMergeSort.setText("Run Merge Sort");
+                    timer.cancel();
+                    timer.purge();
+                } else {
+                    setEnableAllButton(false);
+                    setEnableAllInput(false);
+                    buttonPlayMergeSort.setEnabled(true);
+                    isRunningAlgorithm[3] = true;
+                    buttonPlayMergeSort.setText("Stop Merge Sort");
+                    timer = new Timer();
+                    Sort.mergeSortWithAnimation(timer, viewCards, Config.MILLISECONDS_PER_ACTION * getSlowerScale());
+                }
             }
         });
 

@@ -34,6 +34,7 @@ public class BubbleSort {
         private int period;
         private int i;
         private int j;
+        private int animationStep = 0;
 
         public Task(Timer timer, ViewCards viewCards, int period) {
             this.timer = timer;
@@ -56,25 +57,43 @@ public class BubbleSort {
                 ViewCard v1 = viewCards.getViewCards()[j-1];
                 ViewCard v2 = viewCards.getViewCards()[j];
                 if (v1.compareTo(v2) > 0) {
-                    viewCards.pickAndSwapCards(j-1, j, 10,  period - 20);
+                    if (animationStep == 0) {
+                        Location l1 = new Location(viewCards.xCards[j-1], viewCards.y0Card);
+                        Location l2 = new Location(viewCards.xCards[j], viewCards.y0Card);
+                        viewCards.pickUp5(j-1, l1, 10, period - 10);
+                        viewCards.pickUp5(j, l2, 10, period - 10);
+                        animationStep++;
+                    } else if (animationStep == 1) {
+                        Location l1 = new Location(viewCards.xCards[j-1], viewCards.y5Card);
+                        Location l2 = new Location(viewCards.xCards[j], viewCards.y5Card);
+                        viewCards.swap(j-1, l1, j, l2, 10, period - 10);
+                        animationStep++;
+                    }
                 } else {
-                    int delay1 = 10;
-                    int duration1 = (period - 40) / 2;
-                    Location l11 = new Location(viewCards.getLocationX(j-1), 10);
-                    Location l21 = new Location(viewCards.getLocationX(j), 10);
-
-                    int delay2 = delay1 + duration1 + 10;
-                    int duration2 = (period - 40) / 2;
-                    Location l12 = new Location(l11.getX(), l11.getY() + v1.getHeight() / 4);
-                    Location l22 = new Location(l21.getX(), l21.getY() + v2.getHeight() / 4);
-
-                    viewCards.pickUp1(j-1, l11, delay1, duration1);
-                    viewCards.pickUp1(j, l21, delay1, duration1);
-
-                    viewCards.pickDown1(j-1, l12, delay2, duration2);
-                    viewCards.pickDown1(j, l22, delay2, duration2);
+                    if (animationStep == 2) {
+                        Location l1 = new Location(viewCards.xCards[j-1], viewCards.y5Card);
+                        Location l2 = new Location(viewCards.xCards[j], viewCards.y5Card);
+                        viewCards.pickDown5(j-1, l1, 10, period - 10);
+                        viewCards.pickDown5(j, l2, 10, period - 10);
+                        animationStep = 0;
+                        j++;
+                    } else {
+                        if (animationStep == 0) {
+                            Location l11 = new Location(viewCards.xCards[j-1], viewCards.y0Card);
+                            Location l21 = new Location(viewCards.xCards[j], viewCards.y0Card);
+                            viewCards.pickUp1(j-1, l11, 10, period - 10);
+                            viewCards.pickUp1(j, l21, 10, period - 10);
+                            animationStep++;
+                        } else if (animationStep == 1) {
+                            Location l12 = new Location(viewCards.xCards[j-1], viewCards.y1Card);
+                            Location l22 = new Location(viewCards.xCards[j], viewCards.y1Card);
+                            viewCards.pickDown1(j-1, l12, 10, period - 10);
+                            viewCards.pickDown1(j, l22, 10, period - 10);
+                            animationStep = 0;
+                            j++;
+                        }
+                    }
                 }
-                j++;
             }
         }
     }
