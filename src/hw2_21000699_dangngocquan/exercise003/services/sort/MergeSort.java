@@ -1,5 +1,6 @@
 package hw2_21000699_dangngocquan.exercise003.services.sort;
 
+import hw2_21000699_dangngocquan.exercise003.Config;
 import hw2_21000699_dangngocquan.exercise003.components.ViewCard;
 import hw2_21000699_dangngocquan.exercise003.components.ViewCards;
 import hw2_21000699_dangngocquan.exercise003.services.animation.Location;
@@ -92,54 +93,58 @@ public class MergeSort {
             queues = new Queue[length];
             for (int i = 0; i < queues.length; i++) queues[i] = new LinkedList<>();
             queues[length-1] = lastQueue;
-            indexQueue = queues.length-1;
+            indexQueue = -1;
         }
 
         @Override
         public void run() {
-
             if (array == null) {
-                while (indexQueue < queues.length && queues[indexQueue].size() < 2) {
-                    indexQueue++;
-                }
-                if (indexQueue >= queues.length) {
-                    timer.cancel();
-                    timer.purge();
+                if (indexQueue == -1) {
+                    viewCards.pickUp1All(Config.INITIAL_Y_CARDS, 0, viewCards.getViewCards().length-1, 10, period - 10);
+                    indexQueue = queues.length - 1;
                 } else {
-                    pairLR1 = queues[indexQueue].poll();
-                    pairLR2 = queues[indexQueue].poll();
-                    n = pairLR2[1] - pairLR1[0] + 1;
-                    array = new ViewCard[n];
-                    i = pairLR1[0];
-                    i1 = pairLR1[0];
-                    i2 = pairLR2[0];
-                    viewCards.pickUp1All(viewCards.y0Card, pairLR1[0], pairLR2[1], 10, period - 10);
+                    while (indexQueue < queues.length && queues[indexQueue].size() < 2) {
+                        indexQueue++;
+                    }
+                    if (indexQueue >= queues.length) {
+                        timer.cancel();
+                        timer.purge();
+                    } else {
+                        pairLR1 = queues[indexQueue].poll();
+                        pairLR2 = queues[indexQueue].poll();
+                        n = pairLR2[1] - pairLR1[0] + 1;
+                        array = new ViewCard[n];
+                        i = pairLR1[0];
+                        i1 = pairLR1[0];
+                        i2 = pairLR2[0];
+                        viewCards.pickUp1All(viewCards.y1Card, pairLR1[0], pairLR2[1], 10, period - 10);
+                    }
                 }
             } else {
                 if (i <= pairLR2[1]) {
                     if (i1 <= pairLR1[1] && i2 <= pairLR2[1]) {
                         if (viewCards.getViewCards()[i1].compareTo(viewCards.getViewCards()[i2]) <= 0) {
                             Location l1 = new Location(viewCards.xCards[i], viewCards.y6Card);
-                            Location l2 = new Location(viewCards.xCards[i1], viewCards.y1Card);
+                            Location l2 = new Location(viewCards.xCards[i1], viewCards.y2Card);
                             viewCards.move(i1, l2, i, l1, 10, period - 10);
                             array[i-pairLR1[0]] = viewCards.getViewCards()[i1];
                             i1++;
                         } else {
                             Location l1 = new Location(viewCards.xCards[i], viewCards.y6Card);
-                            Location l2 = new Location(viewCards.xCards[i2], viewCards.y1Card);
+                            Location l2 = new Location(viewCards.xCards[i2], viewCards.y2Card);
                             viewCards.move(i2, l2, i, l1, 10, period - 10);
                             array[i-pairLR1[0]] = viewCards.getViewCards()[i2];
                             i2++;
                         }
                     } else if (i1 <= pairLR1[1]) {
                         Location l1 = new Location(viewCards.xCards[i], viewCards.y6Card);
-                        Location l2 = new Location(viewCards.xCards[i1], viewCards.y1Card);
+                        Location l2 = new Location(viewCards.xCards[i1], viewCards.y2Card);
                         viewCards.move(i1, l2, i, l1, 10, period - 10);
                         array[i-pairLR1[0]] = viewCards.getViewCards()[i1];
                         i1++;
                     } else if (i2 <= pairLR2[1]) {
                         Location l1 = new Location(viewCards.xCards[i], viewCards.y6Card);
-                        Location l2 = new Location(viewCards.xCards[i2], viewCards.y1Card);
+                        Location l2 = new Location(viewCards.xCards[i2], viewCards.y2Card);
                         viewCards.move(i2, l2, i, l1, 10, period - 10);
                         array[i-pairLR1[0]] = viewCards.getViewCards()[i2];
                         i2++;

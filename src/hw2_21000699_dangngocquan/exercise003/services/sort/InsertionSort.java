@@ -1,5 +1,6 @@
 package hw2_21000699_dangngocquan.exercise003.services.sort;
 
+import hw2_21000699_dangngocquan.exercise003.Config;
 import hw2_21000699_dangngocquan.exercise003.components.ViewCard;
 import hw2_21000699_dangngocquan.exercise003.components.ViewCards;
 import hw2_21000699_dangngocquan.exercise003.services.animation.Location;
@@ -39,50 +40,53 @@ public class InsertionSort {
             this.timer = timer;
             this.viewCards = viewCards;
             this.period = period;
-            i = 1;
-            j = i;
+            i = 0;
+            j = 1;
         }
 
         @Override
         public void run() {
-            if (i >= viewCards.getViewCards().length) {
-                timer.cancel();
-                timer.purge();
+            if (i == 0) {
+                viewCards.pickUp1All(Config.INITIAL_Y_CARDS, 1, viewCards.getViewCards().length - 1, 10, period - 10);
+                i = 1;
             } else {
-                if (j < 0) {
-                    Location l = new Location(
-                            viewCards.xCards[0], viewCards.y2Card);
-                    viewCards.pickDown2(0, l,10, period - 10);
-                    i++;
-                    j = i;
-                } else if (j == i) {
-                    Location l = new Location(
-                            viewCards.xCards[i],
-                            10);
-                    viewCards.pickUp2(i, l, 10, period - 10);
-                    j--;
+                if (i >= viewCards.getViewCards().length) {
+                    timer.cancel();
+                    timer.purge();
                 } else {
-                    ViewCard v1 = viewCards.getViewCards()[j];
-                    ViewCard v2 = viewCards.getViewCards()[j+1];
-                    if (v1.compareTo(v2) > 0) {
-                        Location l1 = new Location(
-                                viewCards.xCards[j],
-                                10 );
-                        Location l2 = new Location(
-                                viewCards.xCards[j+1], viewCards.y2Card);
-                        viewCards.swap(j, l1, j+1, l2, 10, period - 10);
-                        j--;
-                    } else {
+                    if (j < 0) {
                         Location l = new Location(
-                                viewCards.xCards[j+1], viewCards.y2Card);
-                        viewCards.pickDown2(j+1, l ,10, period - 10);
+                                viewCards.xCards[0], viewCards.y3Card);
+                        viewCards.pickDown3(0, l,10, period - 10);
                         i++;
                         j = i;
+                    } else if (j == i) {
+                        Location l = new Location(
+                                viewCards.xCards[i],
+                                viewCards.y1Card);
+                        viewCards.pickUp2(i, l, 10, period - 10);
+                        j--;
+                    } else {
+                        ViewCard v1 = viewCards.getViewCards()[j];
+                        ViewCard v2 = viewCards.getViewCards()[j+1];
+                        if (v1.compareTo(v2) > 0) {
+                            Location l1 = new Location(
+                                    viewCards.xCards[j],
+                                    viewCards.y0Card );
+                            Location l2 = new Location(
+                                    viewCards.xCards[j+1], viewCards.y3Card);
+                            viewCards.swap(j, l1, j+1, l2, 10, period - 10);
+                            j--;
+                        } else {
+                            Location l = new Location(
+                                    viewCards.xCards[j+1], viewCards.y3Card);
+                            viewCards.pickDown3(j+1, l ,10, period - 10);
+                            i++;
+                            j = i;
+                        }
                     }
                 }
-
             }
-
         }
     }
 

@@ -9,22 +9,37 @@ import hw2_21000699_dangngocquan.exercise003.services.animation.Location;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ViewCards extends Panel {
     public static int y0Card;
-    public static int y1Card, y2Card, y3Card, y5Card, y6Card;
+    public static int y1Card, y2Card, y3Card, y4Card, y5Card, y6Card;
     public static int x0Card;
     public static int[] xCards; // xCards[i] is x coordinate of card i in view
 
     private ViewCard[] viewCards = null;
-    private int widthPerCard;
-    private int heightPerCard;
     private double dx;
-    private double scale;
 
     public ViewCards(int x, int y, int width, int height, Color backgroundColor, ImageIcon backgroundImage, String text) {
         super(x, y, width, height, backgroundColor, backgroundImage, text);
         addViewCards(52, 12);
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        Graphics2D g2d = (Graphics2D) g.create();
+        g2d.setColor(Config.BACKGROUND_AREA_SORTED_CARDS);
+        g2d.setRenderingHint(RenderingHints.KEY_COLOR_RENDERING,
+                RenderingHints.	VALUE_COLOR_RENDER_QUALITY);
+        g2d.fillRect(
+                0, 0,
+                Config.WIDTH,
+                Config.INITIAL_Y_CARDS + Config.HEIGHT_OF_CARD + 10);
+
+        g2d.dispose();
     }
 
     public void addViewCards(int numberCards, int maxRankCard) {
@@ -32,23 +47,21 @@ public class ViewCards extends Panel {
         repaint();
         Card[] cards = Service.createCards(numberCards, maxRankCard);
         viewCards = new ViewCard[cards.length];
-        widthPerCard = (Config.WIDTH_OF_CARD / 3);
-        dx = (Config.WIDTH - widthPerCard - 20) * 1.0 / (cards.length - 1);
-        scale = widthPerCard * 1.0 / Config.WIDTH_OF_CARD;
-        heightPerCard = ((int) (Config.HEIGHT_OF_CARD * scale)) / 4 * 4;
+        dx = (Config.WIDTH - Config.WIDTH_OF_CARD - 20) * 1.0 / (cards.length - 1);
         y0Card = 10;
-        y1Card = y0Card + heightPerCard / 4;
-        y2Card = y0Card + heightPerCard / 4 * 2;
-        y3Card = y0Card + heightPerCard / 4 * 3;
-        y5Card = y0Card + heightPerCard / 4 * 5;
-        y6Card = y0Card + heightPerCard / 4 * 6;
+        y1Card = y0Card + Config.HEIGHT_OF_CARD / 4;
+        y2Card = y0Card + Config.HEIGHT_OF_CARD / 4 * 2;
+        y3Card = y0Card + Config.HEIGHT_OF_CARD / 4 * 3;
+        y4Card = y0Card + Config.HEIGHT_OF_CARD;
+        y5Card = y0Card + Config.HEIGHT_OF_CARD / 4 * 5;
+        y6Card = y0Card + Config.HEIGHT_OF_CARD / 4 * 6;
         x0Card = 10;
         xCards = new int[numberCards];
         for (int i = 0; i < viewCards.length; i++) {
             xCards[i] = (int) (dx * i + x0Card);
             viewCards[i] = new ViewCard(
                     xCards[i], y0Card,
-                    widthPerCard, heightPerCard,
+                    Config.WIDTH_OF_CARD, Config.HEIGHT_OF_CARD,
                     cards[i]
             );
             add(viewCards[i]);
@@ -98,8 +111,8 @@ public class ViewCards extends Panel {
         int delay1 = delay;
         int duration1 = duration / 4;
 
-        Location l12 = new Location(l11.getX(), l11.getY() + heightPerCard / 4 * 5);
-        Location l22 = new Location(l21.getX(), l21.getY() + heightPerCard / 4 * 5);
+        Location l12 = new Location(l11.getX(), l11.getY() + Config.HEIGHT_OF_CARD / 4 * 5);
+        Location l22 = new Location(l21.getX(), l21.getY() + Config.HEIGHT_OF_CARD / 4 * 5);
         int delay2 = delay1 + duration1 + 10;
         int duration2 = duration / 2;
 
@@ -143,7 +156,7 @@ public class ViewCards extends Panel {
     public void pickUp1(int i, Location l, int delay, int duration) {
         Animation.translate(
                 viewCards[i], l,
-                0, heightPerCard / 4,
+                0, Config.HEIGHT_OF_CARD / 4,
                 delay, duration ,
                 viewCards.length-1-i
         );
@@ -152,7 +165,7 @@ public class ViewCards extends Panel {
     public void pickDown1(int i, Location l, int delay, int duration) {
         Animation.translate(
                 viewCards[i], l, 0,
-                -heightPerCard/4,
+                -Config.HEIGHT_OF_CARD/4,
                 delay, duration,
                 viewCards.length-1-i
         );
@@ -161,7 +174,7 @@ public class ViewCards extends Panel {
     public void pickUp2(int i, Location l, int delay, int duration) {
         Animation.translate(
                 viewCards[i], l,
-                0, heightPerCard / 4 * 2,
+                0, Config.HEIGHT_OF_CARD / 4 * 2,
                 delay, duration ,
                 viewCards.length-1-i
         );
@@ -170,7 +183,7 @@ public class ViewCards extends Panel {
     public void pickDown2(int i, Location l, int delay, int duration) {
         Animation.translate(
                 viewCards[i], l,
-                0, -heightPerCard / 4 * 2,
+                0, -Config.HEIGHT_OF_CARD / 4 * 2,
                 delay, duration,
                 viewCards.length-1-i
         );
@@ -179,7 +192,7 @@ public class ViewCards extends Panel {
     public void pickUp3(int i, Location l, int delay, int duration) {
         Animation.translate(
                 viewCards[i], l, 0,
-                heightPerCard / 4 * 3,
+                Config.HEIGHT_OF_CARD / 4 * 3,
                 delay, duration ,
                 viewCards.length-1-i
         );
@@ -188,7 +201,25 @@ public class ViewCards extends Panel {
     public void pickDown3(int i, Location l, int delay, int duration) {
         Animation.translate(
                 viewCards[i], l,
-                0, -heightPerCard / 4 * 3,
+                0, -Config.HEIGHT_OF_CARD / 4 * 3,
+                delay, duration,
+                viewCards.length-1-i
+        );
+    }
+
+    public void pickUp4(int i, Location l, int delay, int duration) {
+        Animation.translate(
+                viewCards[i], l, 0,
+                Config.HEIGHT_OF_CARD,
+                delay, duration ,
+                viewCards.length-1-i
+        );
+    }
+
+    public void pickDown4(int i, Location l, int delay, int duration) {
+        Animation.translate(
+                viewCards[i], l,
+                0, -Config.HEIGHT_OF_CARD,
                 delay, duration,
                 viewCards.length-1-i
         );
@@ -197,7 +228,7 @@ public class ViewCards extends Panel {
     public void pickUp5(int i, Location l, int delay, int duration) {
         Animation.translate(
                 viewCards[i], l,
-                0, heightPerCard / 4 * 5,
+                0, Config.HEIGHT_OF_CARD / 4 * 5,
                 delay, duration ,
                 viewCards.length-1-i
         );
@@ -206,7 +237,7 @@ public class ViewCards extends Panel {
     public void pickDown5(int i, Location l, int delay, int duration) {
         Animation.translate(
                 viewCards[i], l,
-                0, -heightPerCard / 4 * 5,
+                0, -Config.HEIGHT_OF_CARD / 4 * 5,
                 delay, duration,
                 viewCards.length-1-i
         );
@@ -215,39 +246,191 @@ public class ViewCards extends Panel {
     public void pickDown6(int i, Location l, int delay, int duration) {
         Animation.translate(
                 viewCards[i], l,
-                0, -heightPerCard / 4 * 6,
+                0, -Config.HEIGHT_OF_CARD / 4 * 6,
                 delay, duration,
                 viewCards.length-1-i
         );
     }
 
     public void pickUp1All(int initialY, int i1, int i2, int delay, int duration) {
-        Location[] l = new Location[i2-i1+1];
-        for (int i = i1; i <= i2; i++) {
-            l[i-i1] = new Location(xCards[i], initialY);
-        }
-        for (int i = i1; i <= i2; i++) {
-            pickUp1(i, l[i-i1], delay, duration);
+        int size = i2 - i1 + 1;
+        if (duration >= size * 2) {
+            ViewController.timerViewCards = new Timer();
+            int period;
+            if (size == 0) {
+                period = duration;
+            } else {
+                period = duration / size;
+            }
+            ViewController.timerViewCards.schedule(
+                    new PickUp1All(
+                            initialY, i1, i2, delay, duration, ViewController.timerViewCards),
+                    delay, period
+            );
+        } else {
+            for (int i = i1; i <= i2; i++) {
+                viewCards[i].setY(initialY + Config.HEIGHT_OF_CARD / 4);
+            }
         }
     }
 
     public void pickDown1All(int initialY, int i1, int i2, int delay, int duration) {
-        Location[] l = new Location[i2-i1+1];
-        for (int i = i1; i <= i2; i++) {
-            l[i-i1] = new Location(xCards[i], initialY);
+        int size = i2 - i1 + 1;
+        if (duration >= size * 2) {
+            ViewController.timerViewCards = new Timer();
+            int period;
+            if (size == 0) {
+                period = duration;
+            } else {
+                period = duration / size;
+            }
+            ViewController.timerViewCards.schedule(
+                    new PickDown1All(
+                            initialY, i1, i2, delay, duration, ViewController.timerViewCards),
+                    delay, period
+            );
+        } else {
+            for (int i = i1; i <= i2; i++) {
+                viewCards[i].setY(initialY - Config.HEIGHT_OF_CARD / 4);
+            }
         }
-        for (int i = i1; i <= i2; i++) {
-            pickDown1(i, l[i-i1], delay, duration);
-        }
+
     }
 
     public void pickDown6All(int initialY, int i1, int i2, int delay, int duration) {
-        Location[] l = new Location[i2-i1+1];
-        for (int i = i1; i <= i2; i++) {
-            l[i-i1] = new Location(xCards[i], initialY);
+        int size = i2 - i1 + 1;
+        if (duration >= size * 2) {
+            ViewController.timerViewCards = new Timer();
+            int period;
+            if (size == 0) {
+                period = duration;
+            } else {
+                period = duration / size;
+            }
+            ViewController.timerViewCards.schedule(
+                    new PickDown6All(
+                            initialY, i1, i2, delay, duration, ViewController.timerViewCards),
+                    delay, period
+            );
+        } else {
+            for (int i = i1; i <= i2; i++) {
+                viewCards[i].setY(initialY - Config.HEIGHT_OF_CARD / 4 * 6);
+            }
         }
-        for (int i = i1; i <= i2; i++) {
-            pickDown6(i, l[i-i1], delay, duration);
+
+    }
+
+    private class PickUp1All extends TimerTask {
+        private int initialY;
+        private int i1;
+        private int i2;
+        private int delay;
+        private int duration;
+        private int delay0;
+        private int duration0;
+        private Timer timer;
+
+        public PickUp1All(int initialY, int i1, int i2, int delay, int duration, Timer timer) {
+            this.initialY = initialY;
+            this.i1 = i1;
+            this.i2 = i2;
+            this.delay = delay;
+            this.duration = duration;
+            this.delay0 = 1;
+            if (i2 - i1 + 1 <= 0) {
+                this.duration0 = duration - this.delay0;
+            } else {
+                this.duration0 = duration / (i2 - i1 + 1) - this.delay0;
+            }
+            this.timer = timer;
+        }
+
+        @Override
+        public void run() {
+            if (i1 <= i2) {
+                Location l = new Location(xCards[i1], initialY);
+                pickUp1(i1, l, delay0, duration0);
+                i1++;
+            } else {
+                timer.cancel();
+                timer.purge();
+            }
+        }
+    }
+
+    private class PickDown1All extends TimerTask {
+        private int initialY;
+        private int i1;
+        private int i2;
+        private int delay;
+        private int duration;
+        private int delay0;
+        private int duration0;
+        private Timer timer;
+
+        public PickDown1All(int initialY, int i1, int i2, int delay, int duration, Timer timer) {
+            this.initialY = initialY;
+            this.i1 = i1;
+            this.i2 = i2;
+            this.delay = delay;
+            this.duration = duration;
+            this.delay0 = 1;
+            if (i2 - i1 + 1 <= 0) {
+                this.duration0 = duration - this.delay0;
+            } else {
+                this.duration0 = duration / (i2 - i1 + 1) - this.delay0;
+            }
+            this.timer = timer;
+        }
+
+        @Override
+        public void run() {
+            if (i1 <= i2) {
+                Location l = new Location(xCards[i1], initialY);
+                pickDown1(i1, l, delay0, duration0);
+                i1++;
+            } else {
+                timer.cancel();
+                timer.purge();
+            }
+        }
+    }
+
+    private class PickDown6All extends TimerTask {
+        private int initialY;
+        private int i1;
+        private int i2;
+        private int delay;
+        private int duration;
+        private int delay0;
+        private int duration0;
+        private Timer timer;
+
+        public PickDown6All(int initialY, int i1, int i2, int delay, int duration, Timer timer) {
+            this.initialY = initialY;
+            this.i1 = i1;
+            this.i2 = i2;
+            this.delay = delay;
+            this.duration = duration;
+            this.delay0 = 1;
+            if (i2 - i1 + 1 <= 0) {
+                this.duration0 = duration - this.delay0;
+            } else {
+                this.duration0 = duration / (i2 - i1 + 1) - this.delay0;
+            }
+            this.timer = timer;
+        }
+
+        @Override
+        public void run() {
+            if (i1 <= i2) {
+                Location l = new Location(xCards[i1], initialY);
+                pickDown6(i1, l, delay0, duration0);
+                i1++;
+            } else {
+                timer.cancel();
+                timer.purge();
+            }
         }
     }
 }

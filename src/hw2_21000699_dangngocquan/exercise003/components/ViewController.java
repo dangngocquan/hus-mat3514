@@ -16,6 +16,7 @@ import java.awt.event.FocusListener;
 import java.util.Timer;
 
 public class ViewController extends Panel {
+    public static Timer timerViewCards;
     private Timer timer;
 
     private Panel inputSlowerScalePanel;
@@ -61,7 +62,7 @@ public class ViewController extends Panel {
     public void addTextFields() {
         if (inputMaxRankCardPanel == null) {
             inputMaxRankCardPanel = new Panel(
-                    20, 10,
+                    Config.WIDTH/8, 10,
                     150, 40,
                     getBackground(), null, "Max rank of card [0-12]:"
             );
@@ -217,7 +218,7 @@ public class ViewController extends Panel {
     public void addButtons() {
         if (buttonShuffle == null) {
             buttonShuffle = new Button(
-                    300, 10, 150, 65, "Shuffle Cards"
+                    Config.WIDTH / 2, 10, 150, 65, "Shuffle Cards"
             );
             add(buttonShuffle);
         }
@@ -320,6 +321,8 @@ public class ViewController extends Panel {
                     buttonPlayBubbleSort.setText("Run Bubble Sort");
                     timer.cancel();
                     timer.purge();
+                    timerViewCards.cancel();
+                    timerViewCards.purge();
                 } else {
                     setEnableAllButton(false);
                     setEnableAllInput(false);
@@ -327,6 +330,7 @@ public class ViewController extends Panel {
                     isRunningAlgorithm[0] = true;
                     buttonPlayBubbleSort.setText("Stop Bubble Sort");
                     timer = new Timer();
+                    timerViewCards = new Timer();
                     Sort.bubbleSortWithAnimation(timer, viewCards, Config.MILLISECONDS_PER_ACTION * getSlowerScale());
                 }
             }
@@ -352,6 +356,8 @@ public class ViewController extends Panel {
                     buttonPlaySelectionSort.setText("Run Selection Sort");
                     timer.cancel();
                     timer.purge();
+                    timerViewCards.cancel();
+                    timerViewCards.purge();
                 } else {
                     setEnableAllButton(false);
                     setEnableAllInput(false);
@@ -359,6 +365,7 @@ public class ViewController extends Panel {
                     isRunningAlgorithm[1] = true;
                     buttonPlaySelectionSort.setText("Stop Selection Sort");
                     timer = new Timer();
+                    timerViewCards = new Timer();
                     Sort.selectionSortWithAnimation(timer, viewCards, Config.MILLISECONDS_PER_ACTION * getSlowerScale());
                 }
             }
@@ -384,6 +391,8 @@ public class ViewController extends Panel {
                     buttonPlayInsertionSort.setText("Run Insertion Sort");
                     timer.cancel();
                     timer.purge();
+                    timerViewCards.cancel();
+                    timerViewCards.purge();
                 } else {
                     setEnableAllButton(false);
                     setEnableAllInput(false);
@@ -391,6 +400,7 @@ public class ViewController extends Panel {
                     isRunningAlgorithm[2] = true;
                     buttonPlayInsertionSort.setText("Stop Insertion Sort");
                     timer = new Timer();
+                    timerViewCards = new Timer();
                     Sort.insertionSortWithAnimation(timer, viewCards, Config.MILLISECONDS_PER_ACTION * getSlowerScale());
                 }
             }
@@ -416,6 +426,8 @@ public class ViewController extends Panel {
                     buttonPlayMergeSort.setText("Run Merge Sort");
                     timer.cancel();
                     timer.purge();
+                    timerViewCards.cancel();
+                    timerViewCards.purge();
                 } else {
                     setEnableAllButton(false);
                     setEnableAllInput(false);
@@ -423,6 +435,7 @@ public class ViewController extends Panel {
                     isRunningAlgorithm[3] = true;
                     buttonPlayMergeSort.setText("Stop Merge Sort");
                     timer = new Timer();
+                    timerViewCards = new Timer();
                     Sort.mergeSortWithAnimation(timer, viewCards, Config.MILLISECONDS_PER_ACTION * getSlowerScale());
                 }
             }
@@ -448,6 +461,8 @@ public class ViewController extends Panel {
                     buttonPlayQuickSort.setText("Run Quick Sort");
                     timer.cancel();
                     timer.purge();
+                    timerViewCards.cancel();
+                    timerViewCards.purge();
                 } else {
                     setEnableAllButton(false);
                     setEnableAllInput(false);
@@ -455,6 +470,7 @@ public class ViewController extends Panel {
                     isRunningAlgorithm[4] = true;
                     buttonPlayQuickSort.setText("Stop Quick Sort");
                     timer = new Timer();
+                    timerViewCards = new Timer();
                     Sort.quickSortWithAnimation(timer, viewCards, Config.MILLISECONDS_PER_ACTION * getSlowerScale());
                 }
             }

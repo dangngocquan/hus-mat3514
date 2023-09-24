@@ -1,5 +1,6 @@
 package hw2_21000699_dangngocquan.exercise003.services.sort;
 
+import hw2_21000699_dangngocquan.exercise003.Config;
 import hw2_21000699_dangngocquan.exercise003.components.ViewCard;
 import hw2_21000699_dangngocquan.exercise003.components.ViewCards;
 import hw2_21000699_dangngocquan.exercise003.services.animation.Location;
@@ -64,7 +65,7 @@ public class QuickSort {
             this.timer = timer;
             this.viewCards = viewCards;
             this.period = period;
-            i = 0;
+            i = -1;
             lefts = new Stack<>();
             rights = new Stack<>();
             left = 0;
@@ -73,120 +74,136 @@ public class QuickSort {
 
         @Override
         public void run() {
-            if (left < right) {
-                if (i == left) {
-                    if (animationStep == 0) {
-                        viewCards.pickUp1All(viewCards.y0Card, left, right, 10, period - 10);
-                        animationStep++;
-                    } else if (animationStep == 1) {
-                        tempPivotValue = viewCards.getViewCards()[i];
-                        tempPivotIndex = i;
-                        Location l = new Location(viewCards.xCards[i], viewCards.y1Card);
-                        viewCards.pickUp2(i, l, 10, period - 10);
-                        i++;
-                        animationStep = 0;
-                    }
-                } else if (i <= right) {
-                    ViewCard v1 = viewCards.getViewCards()[i];
-                    if (animationStep == 2) {
-                        v1 = viewCards.getViewCards()[tempPivotIndex];
-                    }
-                    if (v1.compareTo(tempPivotValue) < 0) {
+            if (i == -1) {
+                viewCards.pickUp1All(
+                        Config.INITIAL_Y_CARDS,
+                        0, viewCards.getViewCards().length-1,
+                        10, period - 10
+                );
+                i++;
+            } else {
+                if (left < right) {
+                    if (i == left) {
                         if (animationStep == 0) {
-                            tempPivotIndex++;
-                            Location l11 = new Location(
-                                    viewCards.xCards[tempPivotIndex],
-                                    viewCards.y1Card);
-                            Location l21 = new Location(
-                                    viewCards.xCards[i],
-                                    viewCards.y1Card);
-                            viewCards.pickUp1(tempPivotIndex, l11, 10, period - 10);
-                            viewCards.pickUp1(i, l21, 10, period - 10);
+                            viewCards.pickUp1All(viewCards.y1Card, left, right, 10, period - 10);
                             animationStep++;
                         } else if (animationStep == 1) {
-                            Location l12 = new Location(
-                                    viewCards.xCards[tempPivotIndex],
-                                    viewCards.y2Card);
-                            Location l22 = new Location(
-                                    viewCards.xCards[i],
-                                    viewCards.y2Card);
-                            viewCards.swap(tempPivotIndex, l12, i, l22, 10, period - 10);
-                            animationStep++;
-                        } else if (animationStep == 2) {
-                            Location l12 = new Location(
-                                    viewCards.xCards[tempPivotIndex],
-                                    viewCards.y2Card);
-                            Location l22 = new Location(
-                                    viewCards.xCards[i],
-                                    viewCards.y2Card);
-                            viewCards.pickDown1(tempPivotIndex, l12, 10, period - 10);
-                            viewCards.pickDown1(i, l22, 10, period - 10);
+                            tempPivotValue = viewCards.getViewCards()[i];
+                            tempPivotIndex = i;
+                            Location l = new Location(viewCards.xCards[i], viewCards.y2Card);
+                            viewCards.pickUp2(i, l, 10, period - 10);
                             i++;
                             animationStep = 0;
                         }
-                    } else {
-                        if (animationStep == 0) {
-                            Location l1 = new Location(viewCards.xCards[i], viewCards.y1Card);
-                            viewCards.pickUp1(i, l1, 10, period - 10);
-                            animationStep++;
-                        } else if (animationStep == 1) {
-                            Location l2 = new Location(viewCards.xCards[i], viewCards.y2Card);
-                            viewCards.pickDown1(i, l2, 10, period - 10);
-                            i++;
-                            animationStep = 0;
+                    } else if (i <= right) {
+                        ViewCard v1 = viewCards.getViewCards()[i];
+                        if (animationStep == 2) {
+                            v1 = viewCards.getViewCards()[tempPivotIndex];
                         }
-                    }
-                } else if (i == right + 1){
-                    if (left != tempPivotIndex) {
-                        if (animationStep == 0) {
-                            Location l1 = new Location(
-                                    viewCards.xCards[left],
-                                    viewCards.y3Card);
-                            Location l2 = new Location(
-                                    viewCards.xCards[tempPivotIndex],
-                                    viewCards.y1Card);
-                            viewCards.swap(left, l1, tempPivotIndex, l2, 10, period - 10);
-                            animationStep++;
-                        } else if (animationStep == 1) {
-                            Location l = new Location(
-                                    viewCards.xCards[tempPivotIndex],
-                                    viewCards.y3Card);
+                        if (v1.compareTo(tempPivotValue) < 0) {
+                            if (animationStep == 0) {
+                                tempPivotIndex++;
+                                Location l11 = new Location(
+                                        viewCards.xCards[tempPivotIndex],
+                                        viewCards.y2Card);
+                                Location l21 = new Location(
+                                        viewCards.xCards[i],
+                                        viewCards.y2Card);
+                                viewCards.pickUp1(tempPivotIndex, l11, 10, period - 10);
+                                viewCards.pickUp1(i, l21, 10, period - 10);
+                                animationStep++;
+                            } else if (animationStep == 1) {
+                                Location l12 = new Location(
+                                        viewCards.xCards[tempPivotIndex],
+                                        viewCards.y3Card);
+                                Location l22 = new Location(
+                                        viewCards.xCards[i],
+                                        viewCards.y3Card);
+                                viewCards.swap(tempPivotIndex, l12, i, l22, 10, period - 10);
+                                animationStep++;
+                            } else if (animationStep == 2) {
+                                Location l12 = new Location(
+                                        viewCards.xCards[tempPivotIndex],
+                                        viewCards.y3Card);
+                                Location l22 = new Location(
+                                        viewCards.xCards[i],
+                                        viewCards.y3Card);
+                                viewCards.pickDown1(tempPivotIndex, l12, 10, period - 10);
+                                viewCards.pickDown1(i, l22, 10, period - 10);
+                                i++;
+                                animationStep = 0;
+                            }
+                        } else {
+                            if (animationStep == 0) {
+                                Location l1 = new Location(viewCards.xCards[i], viewCards.y2Card);
+                                viewCards.pickUp1(i, l1, 10, period - 10);
+                                animationStep++;
+                            } else if (animationStep == 1) {
+                                Location l2 = new Location(viewCards.xCards[i], viewCards.y3Card);
+                                viewCards.pickDown1(i, l2, 10, period - 10);
+                                i++;
+                                animationStep = 0;
+                            }
+                        }
+                    } else if (i == right + 1){
+                        if (left != tempPivotIndex) {
+                            if (animationStep == 0) {
+                                Location l1 = new Location(
+                                        viewCards.xCards[left],
+                                        viewCards.y4Card);
+                                Location l2 = new Location(
+                                        viewCards.xCards[tempPivotIndex],
+                                        viewCards.y2Card);
+                                viewCards.swap(left, l1, tempPivotIndex, l2, 10, period - 10);
+                                animationStep++;
+                            } else if (animationStep == 1) {
+                                Location l = new Location(
+                                        viewCards.xCards[tempPivotIndex],
+                                        viewCards.y4Card);
+                                viewCards.pickDown4(
+                                        tempPivotIndex, l,
+                                        10, period - 10);
+                                i++;
+                                animationStep = 0;
+                            }
+                        } else {
                             viewCards.pickDown2(
-                                    tempPivotIndex, l,
+                                    tempPivotIndex,
+                                    new Location(
+                                            viewCards.xCards[tempPivotIndex],
+                                            viewCards.y4Card
+                                    ),
                                     10, period - 10);
                             i++;
-                            animationStep = 0;
                         }
                     } else {
-                        viewCards.pickDown2(
-                                tempPivotIndex,
-                                new Location(
-                                        viewCards.xCards[tempPivotIndex],
-                                        viewCards.y3Card
-                                ),
-                                10, period - 10);
-                        i++;
+                        viewCards.pickDown1All(viewCards.y2Card, left, tempPivotIndex - 1, 10, period - 10);
+                        viewCards.pickDown1All(viewCards.y2Card, tempPivotIndex + 1, right, 10, period - 10);
+                        if (tempPivotIndex + 1 < viewCards.getViewCards().length) {
+                            lefts.add(tempPivotIndex+1);
+                            rights.add(right);
+                        }
+                        right = tempPivotIndex-1;
+                        i = left;
                     }
                 } else {
-                    viewCards.pickDown1All(viewCards.y1Card, left, right, 10, period - 10);
-                    lefts.add(tempPivotIndex+1);
-                    rights.add(right);
-                    lefts.add(left);
-                    rights.add(tempPivotIndex-1);
-                    left = lefts.pop();
-                    right = rights.pop();
-                    i = left;
-                }
-            } else {
-                if (lefts.isEmpty()) {
-                    timer.cancel();
-                    timer.purge();
-                } else {
-                    left = lefts.pop();
-                    right = rights.pop();
-                    i = left;
+                    Location l = new Location(
+                            viewCards.xCards[left],
+                            viewCards.y1Card);
+                    viewCards.pickDown1(
+                            left, l,
+                            10, period - 10);
+                    if (lefts.isEmpty()) {
+                        timer.cancel();
+                        timer.purge();
+                    } else {
+                        left = lefts.pop();
+                        right = rights.pop();
+                        i = left;
+                    }
                 }
             }
+
         }
     }
 }
