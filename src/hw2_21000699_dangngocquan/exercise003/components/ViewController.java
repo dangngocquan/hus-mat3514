@@ -115,7 +115,7 @@ public class ViewController extends Panel {
                     inputSlowerScalePanel.getX() + inputSlowerScalePanel.getWidth() + 10,
                     inputSlowerScalePanel.getY(),
                     inputNumberCardsField.getWidth(), inputNumberCardsField.getHeight(),
-                    "5", Color.WHITE,
+                    "1", Color.WHITE,
                     1, 0, 0
             );
             add(inputSlowerScaleField);
