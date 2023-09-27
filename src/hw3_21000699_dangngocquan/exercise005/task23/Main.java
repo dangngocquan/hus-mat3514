@@ -1,4 +1,4 @@
-package hw3_21000699_dangngocquan.exercise005.task22;
+package hw3_21000699_dangngocquan.exercise005.task23;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -13,10 +13,9 @@ public class Main {
             list.add(scanner.nextInt());
         }
         int k = scanner.nextInt();
-        int x = scanner.nextInt();
         scanner.close();
 
-        list.add(k, x);
+        list.remove(k);
 
         for (int e : list) {
             System.out.print(e + " ");
