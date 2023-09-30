@@ -9,7 +9,10 @@ import hw3_21000699_dangngocquan.exercise004.services.Service;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class ViewController extends Panel {
@@ -26,6 +29,7 @@ public class ViewController extends Panel {
         addInputTextArea();
         addFocusListenerForInputTextArea();
         addButtons();
+        addActionListenerForButtonImport();
     }
 
     public void addInputTextArea() {
@@ -50,6 +54,10 @@ public class ViewController extends Panel {
         inputText.getDocument().addDocumentListener(new HandlerInputDataModify());
     }
 
+    public void addActionListenerForButtonImport() {
+        buttonImport.addActionListener(new HandlerButtonImportData());
+    }
+
     public String getInputText() {
         return inputText.getText();
     }
@@ -69,6 +77,19 @@ public class ViewController extends Panel {
         @Override
         public void changedUpdate(DocumentEvent arg0) {
 
+        }
+    }
+
+    private class HandlerButtonImportData implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JFileChooser j = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+            int r = j.showSaveDialog(null);
+            if (r == JFileChooser.APPROVE_OPTION) {
+                String path = j.getSelectedFile().getAbsolutePath();
+                String data = Service.getStringFromFile(path);
+                inputText.setText(data);
+            }
         }
     }
 

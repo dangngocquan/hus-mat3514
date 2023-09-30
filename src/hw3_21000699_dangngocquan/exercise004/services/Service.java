@@ -6,7 +6,10 @@ import hw3_21000699_dangngocquan.exercise004.models.WordCount;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Iterator;
+import java.util.Scanner;
 
 public class Service {
     public static JFrame getFrame(Component theComponent) {
@@ -22,8 +25,22 @@ public class Service {
         return theFrame;
     }
 
+    public static String getStringFromFile(String path) {
+        StringBuilder sb = new StringBuilder("");
+        try {
+            Scanner scanner = new Scanner(new File(path));
+            while (scanner.hasNextLine()) {
+                sb.append(scanner.nextLine());
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return sb.toString();
+    }
+
     public static MyList<WordCount> getListWord(String document) {
-        String[] words = document.split("[\s.,]+");
+        String[] words = document.split("[\s<\\(\\[{\\^=$!|\\]}\\)?*+.>\"]+");
         MyList<WordCount> listWord = new MyArrayList<>();
         if (document.isBlank()) return listWord;
         for (String word : words) {
