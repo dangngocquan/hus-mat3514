@@ -7,29 +7,48 @@ import java.util.Scanner;
 public class Main {
     static class Solution {
         public void run() {
-            // Get input
+            int n = getInput();
+            solve(n);
+        }
+
+        private int getInput() {
             Scanner scanner = new Scanner(System.in);
-            int a = scanner.nextInt();
-            int[] phoneNumbers = new int[a];
-            for (int i = 0; i < a; i++) phoneNumbers[i] = scanner.nextInt();
-            int k = scanner.nextInt();
+            int n = scanner.nextInt();
             scanner.close();
-
-            // Solve
-            solve(a, phoneNumbers, k);
+            return n;
         }
 
-        private void solve(int n, int[] phoneNumbers, int k) {
+        private void solve(int n) {
             Queue<Integer> queue = new LinkedList<>();
-            for (int phoneNumber : phoneNumbers) {
-                if (queue.contains(phoneNumber)) continue;
-                if (queue.size() == k) queue.poll();
-                queue.add(phoneNumber);
-            }
+            queue.add(2);
+            queue.add(3);
+            queue.add(5);
+            queue.add(7);
 
-            while (!queue.isEmpty()) System.out.print(queue.poll() + " ");
+            while (!queue.isEmpty()) {
+                // Print current prime
+                int number = queue.poll();
+                if (number > n) break;
+                System.out.print(number + " ");
+
+                number *= 10;
+                if (number >= n) continue; // Not enqueue new primes
+
+                // Enqueue new primes
+                if (isPrime(number + 1)) queue.add(number + 1);
+                if (isPrime(number + 3)) queue.add(number + 3);
+                if (isPrime(number + 7)) queue.add(number + 7);
+                if (isPrime(number + 9)) queue.add(number + 9);
+            }
         }
 
+        private boolean isPrime(int n) {
+            if (n < 2) return false;
+            for (int i = 2; i <= Math.sqrt(n); i++) {
+                if (n % i == 0) return false;
+            }
+            return true;
+        }
 
     }
 
