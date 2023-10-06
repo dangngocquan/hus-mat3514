@@ -1,5 +1,7 @@
 package hw4_21000699_dangngocquan.exercise002;
 
+import hw4_21000699_dangngocquan.exercise003.StackInterface;
+
 import java.util.Iterator;
 
 public class ArrayStack<E> implements StackInterface<E> {
@@ -63,7 +65,7 @@ public class ArrayStack<E> implements StackInterface<E> {
     }
 
     private void enlarge() {
-        E[] newData = (E[]) new Object[data.length];
+        E[] newData = (E[]) new Object[data.length * 2];
         for (int i = 0; i < data.length; i++) newData[i] = data[i];
         data = newData;
     }

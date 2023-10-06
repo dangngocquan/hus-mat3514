@@ -1,5 +1,8 @@
 package hw4_21000699_dangngocquan.exercise002;
 
+import hw4_21000699_dangngocquan.exercise003.LinkedListStack;
+import hw4_21000699_dangngocquan.exercise003.StackInterface;
+
 public class Test {
     public void run() {
         testArrayStack();
