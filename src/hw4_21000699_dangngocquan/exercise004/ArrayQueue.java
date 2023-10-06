@@ -1,5 +1,7 @@
 package hw4_21000699_dangngocquan.exercise004;
 
+import hw4_21000699_dangngocquan.exercise005.QueueInterface;
+
 import java.util.Iterator;
 
 public class ArrayQueue<E> implements QueueInterface<E> {

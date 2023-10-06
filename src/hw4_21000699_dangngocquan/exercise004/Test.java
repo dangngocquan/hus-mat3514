@@ -1,5 +1,8 @@
 package hw4_21000699_dangngocquan.exercise004;
 
+import hw4_21000699_dangngocquan.exercise005.LinkedListQueue;
+import hw4_21000699_dangngocquan.exercise005.QueueInterface;
+
 public class Test {
     public void run() {
         testArrayQueue();
