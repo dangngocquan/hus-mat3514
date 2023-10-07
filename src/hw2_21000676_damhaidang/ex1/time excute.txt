@@ -1,0 +1,27 @@
+100 elements:
+Bubble sort: 179070 nano seconds
+Insertion sort: 50510 nano seconds
+Selection sort: 50230 nano seconds
+Quick sort: 26385 nano seconds
+Merge sort: 15775 nano seconds
+
+1000 elements:
+Bubble sort: 1561590 nano seconds
+Insertion sort: 471460 nano seconds
+Selection sort: 501705 nano seconds
+Quick sort: 135610 nano seconds
+Merge sort: 90705 nano seconds
+
+10000 elements:
+Bubble sort: 110706685 nano seconds
+Insertion sort: 4567410 nano seconds
+Selection sort: 18494670 nano seconds
+Quick sort: 1053890 nano seconds
+Merge sort: 680930 nano seconds
+
+100000 elements
+Bubble sort: 13592883655 nano seconds
+Insertion sort: 391557355 nano seconds
+Selection sort: 1470523910 nano seconds
+Quick sort: 8704985 nano seconds
+Merge sort: 6173220 nano seconds
