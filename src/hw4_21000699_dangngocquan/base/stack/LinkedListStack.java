@@ -1,8 +1,8 @@
-package hw4_21000699_dangngocquan.exercise005;
+package hw4_21000699_dangngocquan.base.stack;
 
 import java.util.Iterator;
 
-public class LinkedListStack<E> implements StackInterface<E> {
+public class LinkedListStack<E> extends AbstractStack<E> {
     class Node {
         E element;
         Node next;
@@ -27,10 +27,10 @@ public class LinkedListStack<E> implements StackInterface<E> {
 
     @Override
     public E pop() {
-        E element = stack.element;
+        E element = null;
         if (stack != null) {
+            element = stack.element;
             stack = stack.next;
-            size--;
         }
         return element;
     }
@@ -65,17 +65,5 @@ public class LinkedListStack<E> implements StackInterface<E> {
             currentNode = currentNode.next;
             return element;
         }
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder("[");
-        Iterator iterator = iterator();
-        while (iterator.hasNext()) {
-            sb.insert(1, ", ").insert(1, iterator.next());
-        }
-        if (sb.length() > 1) sb.delete(sb.length()-2, sb.length());
-        sb.append("]");
-        return sb.toString();
     }
 }

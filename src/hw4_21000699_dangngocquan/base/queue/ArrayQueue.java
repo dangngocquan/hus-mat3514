@@ -1,10 +1,8 @@
-package hw4_21000699_dangngocquan.exercise004;
-
-import hw4_21000699_dangngocquan.exercise005.QueueInterface;
+package hw4_21000699_dangngocquan.base.queue;
 
 import java.util.Iterator;
 
-public class ArrayQueue<E> implements QueueInterface<E> {
+public class ArrayQueue<E> extends AbstractQueue<E> {
     public static final int DEFAULT_CAPACITY = 10;
     private E[] data;
     private int firstIndex;
@@ -56,25 +54,10 @@ public class ArrayQueue<E> implements QueueInterface<E> {
     }
 
     private void enlarge() {
-        /*
-
-        data    [.] [.] [.] [.] [f] [.] [.]
-                 .   .   .   .   .   .   .
-                 .   .   .   .       .   .   .
-                 .   .   .   .           .   .   .
-                 .   .   .   .               .   .   .
-                 .   .   .   .                   .   .   .
-                 .   .   .   .                       .   .   .
-                 .   .   .   .                           .   .   .
-                 .   .   .   .                               .   .   .
-        newData [.] [.] [.] [.] [ ] [ ] [ ] [ ] [ ] [ ] [ ] [f] [.] [.]
-
-        */
-
         E[] newData = (E[]) new Object[data.length * 2];
-        for (int i = 0; i < firstIndex; i++) newData[i] = data[i];
-        for (int i = firstIndex; i < data.length; i++) newData[i+data.length] = data[i];
-        firstIndex += data.length;
+        int i = 0;
+        while (!isEmpty()) newData[i++] = dequeue();
+        firstIndex = 0;
         data = newData;
     }
 
@@ -97,17 +80,5 @@ public class ArrayQueue<E> implements QueueInterface<E> {
             currentIndex++;
             return element;
         }
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder("[");
-        Iterator iterator = iterator();
-        while (iterator.hasNext()) {
-            sb.append(iterator.next()).append(", ");
-        }
-        if (sb.length() > 1) sb.delete(sb.length()-2, sb.length());
-        sb.append("]");
-        return sb.toString();
     }
 }

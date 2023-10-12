@@ -1,7 +1,6 @@
 package hw4_21000699_dangngocquan.exercise003;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class Test {
     public void run() {
@@ -10,18 +9,8 @@ public class Test {
         showTestCalculateExpressions();
     }
 
-    public String getInput() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.printf("%-20s: \n", "INPUT");
-        String expression = scanner.nextLine();
-        scanner.close();
-        return expression;
-    }
-
     public String dashes(int length) {
-        StringBuilder sb = new StringBuilder("");
-        for (int i = 0; i < length; i++) sb.append("-");
-        return sb.toString();
+        return "-".repeat(Math.max(0, length));
     }
 
     public void showTestValidBrackets() {
@@ -128,7 +117,7 @@ public class Test {
     }
 
     public String join(List<String> list, String separate) {
-        StringBuilder sb = new StringBuilder("");
+        StringBuilder sb = new StringBuilder();
         for (String word : list) {
             sb.append(word).append(separate);
         }

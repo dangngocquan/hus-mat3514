@@ -1,7 +1,8 @@
 package hw4_21000699_dangngocquan.exercise004;
 
-import hw4_21000699_dangngocquan.exercise005.LinkedListQueue;
-import hw4_21000699_dangngocquan.exercise005.QueueInterface;
+import hw4_21000699_dangngocquan.base.queue.ArrayQueue;
+import hw4_21000699_dangngocquan.base.queue.LinkedListQueue;
+import hw4_21000699_dangngocquan.base.queue.QueueInterface;
 
 public class Test {
     public void run() {
@@ -11,7 +12,7 @@ public class Test {
 
     public void testArrayQueue() {
         System.out.println("\nTEST ARRAY QUEUE");
-        QueueInterface<Integer> queue = new ArrayQueue();
+        QueueInterface<Integer> queue = new ArrayQueue<>();
         testQueue(queue);
     }
 
@@ -49,7 +50,7 @@ public class Test {
 
     }
 
-    public void testEnqueue(QueueInterface queue, Object o) {
+    public void testEnqueue(QueueInterface<Integer> queue, Integer o) {
         queue.enqueue(o);
         System.out.printf(
                 "\t%-20s %-15s %-100s\n",
@@ -59,7 +60,7 @@ public class Test {
         );
     }
 
-    public void testDequeue(QueueInterface queue) {
+    public void testDequeue(QueueInterface<Integer> queue) {
         System.out.printf(
                 "\t%-20s %-15s %-100s\n",
                 "dequeue()",
@@ -68,7 +69,7 @@ public class Test {
         );
     }
 
-    public void testSize(QueueInterface queue) {
+    public void testSize(QueueInterface<Integer> queue) {
         System.out.printf(
                 "\t%-20s %-15s %-100s\n",
                 "size()",
@@ -77,7 +78,7 @@ public class Test {
         );
     }
 
-    public void testFirst(QueueInterface queue) {
+    public void testFirst(QueueInterface<Integer> queue) {
         System.out.printf(
                 "\t%-20s %-15s %-100s\n",
                 "first()",
@@ -86,7 +87,7 @@ public class Test {
         );
     }
 
-    public void testLast(QueueInterface queue) {
+    public void testLast(QueueInterface<Integer> queue) {
         System.out.printf(
                 "\t%-20s %-15s %-100s\n",
                 "last()",
@@ -95,7 +96,7 @@ public class Test {
         );
     }
 
-    public void testIsEmpty(QueueInterface queue) {
+    public void testIsEmpty(QueueInterface<Integer> queue) {
         System.out.printf(
                 "\t%-20s %-15s %-100s\n",
                 "isEmpty()",

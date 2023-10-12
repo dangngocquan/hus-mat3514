@@ -1,5 +1,8 @@
 package hw4_21000699_dangngocquan.exercise001;
 
+import hw4_21000699_dangngocquan.base.stack.LinkedListStack;
+import hw4_21000699_dangngocquan.base.stack.StackInterface;
+
 import java.util.Scanner;
 
 public class Test {
@@ -22,7 +25,7 @@ public class Test {
         System.out.println("\nCODE EXECUTE: ");
         System.out.printf(
                 "%s\n%s\n%s\n%s\n%s\n\n",
-                "\tMyStack stack = new MySinglyLinkedListStack();",
+                "\tStackInterface stack = new LinkedListStack();",
                 "\tfor (int i = 0; i < fullName.length(); i++) {",
                 "\t\tif (i % 2 == 0) stack.push(fullName.charAt(i));",
                 "\t\tif (i % 3 == 0) stack.pop();",
@@ -40,7 +43,7 @@ public class Test {
         );
         System.out.println("\t------------------------------------------");
 
-        MyStack stack = new MySinglyLinkedListStack();
+        StackInterface<Character> stack = new LinkedListStack<>();
         for (int i = 0; i < fullName.length(); i++) {
             boolean hasChanged = false;
             if (i % 2 == 0) {

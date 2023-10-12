@@ -1,7 +1,8 @@
 package hw4_21000699_dangngocquan.exercise002;
 
-import hw4_21000699_dangngocquan.exercise003.LinkedListStack;
-import hw4_21000699_dangngocquan.exercise003.StackInterface;
+import hw4_21000699_dangngocquan.base.stack.ArrayStack;
+import hw4_21000699_dangngocquan.base.stack.LinkedListStack;
+import hw4_21000699_dangngocquan.base.stack.StackInterface;
 
 public class Test {
     public void run() {
@@ -11,17 +12,17 @@ public class Test {
 
     public void testArrayStack() {
         System.out.println("\nTEST ARRAY STACK");
-        StackInterface stack = new ArrayStack();
+        StackInterface<Integer> stack = new ArrayStack<>();
         testStack(stack);
     }
 
     public void testLinkedListStack() {
         System.out.println("\nTEST LINKED LIST STACK");
-        StackInterface stack = new LinkedListStack();
+        StackInterface<Integer> stack = new LinkedListStack<>();
         testStack(stack);
     }
 
-    public void testStack(StackInterface stack) {
+    public void testStack(StackInterface<Integer> stack) {
         System.out.printf(
                 "\t%-20s %-15s %-100s\n",
                 "Action",
@@ -44,7 +45,7 @@ public class Test {
 
     }
 
-    public void testPush(StackInterface stack, Object o) {
+    public void testPush(StackInterface<Integer> stack, Integer o) {
         stack.push(o);
         System.out.printf(
                 "\t%-20s %-15s %-100s\n",
@@ -54,7 +55,7 @@ public class Test {
         );
     }
 
-    public void testPop(StackInterface stack) {
+    public void testPop(StackInterface<Integer> stack) {
         System.out.printf(
                 "\t%-20s %-15s %-100s\n",
                 "stack.pop()",
@@ -63,7 +64,7 @@ public class Test {
         );
     }
 
-    public void testTop(StackInterface stack) {
+    public void testTop(StackInterface<Integer> stack) {
         System.out.printf(
                 "\t%-20s %-15s %-100s\n",
                 "stack.top()",
@@ -72,7 +73,7 @@ public class Test {
         );
     }
 
-    public void testSize(StackInterface stack) {
+    public void testSize(StackInterface<Integer> stack) {
         System.out.printf(
                 "\t%-20s %-15s %-100s\n",
                 "stack.size()",
@@ -81,7 +82,7 @@ public class Test {
         );
     }
 
-    public void testEmpty(StackInterface stack) {
+    public void testEmpty(StackInterface<Integer> stack) {
         System.out.printf(
                 "\t%-20s %-15s %-100s\n",
                 "stack.isEmpty()",

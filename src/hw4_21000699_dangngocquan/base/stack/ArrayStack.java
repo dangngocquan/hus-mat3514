@@ -1,10 +1,8 @@
-package hw4_21000699_dangngocquan.exercise002;
-
-import hw4_21000699_dangngocquan.exercise003.StackInterface;
+package hw4_21000699_dangngocquan.base.stack;
 
 import java.util.Iterator;
 
-public class ArrayStack<E> implements StackInterface<E> {
+public class ArrayStack<E> extends AbstractStack<E> {
     public static final int DEFAULT_CAPACITY = 10;
     private E[] data;
     private int size;
@@ -66,19 +64,7 @@ public class ArrayStack<E> implements StackInterface<E> {
 
     private void enlarge() {
         E[] newData = (E[]) new Object[data.length * 2];
-        for (int i = 0; i < data.length; i++) newData[i] = data[i];
+        System.arraycopy(data, 0, newData, 0, data.length);
         data = newData;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder("[");
-        Iterator iterator = iterator();
-        while (iterator.hasNext()) {
-            sb.insert(1, ", ").insert(1, iterator.next());
-        }
-        if (sb.length() > 1) sb.delete(sb.length()-2, sb.length());
-        sb.append("]");
-        return sb.toString();
     }
 }

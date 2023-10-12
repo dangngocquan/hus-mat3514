@@ -1,17 +1,20 @@
 package hw4_21000699_dangngocquan.exercise003;
 
+import hw4_21000699_dangngocquan.base.stack.LinkedListStack;
+import hw4_21000699_dangngocquan.base.stack.StackInterface;
+
 import java.util.LinkedList;
 import java.util.List;
 
 public class Expression {
-    private String expression;
+    private final String expression;
 
     public Expression(String expression) {
         this.expression = expression;
     }
 
     public boolean isValidBrackets() {
-        StackInterface stack = new LinkedListStack();
+        StackInterface<Character> stack = new LinkedListStack<>();
         for (int i = 0; i < expression.length(); i++) {
             char c = expression.charAt(i);
             if (c == '(') {
@@ -55,7 +58,7 @@ public class Expression {
                 if (isOpenBracket(c)) return false;
                 // Example: )( is invalid
                 if (isDigit(c)) return false;
-                // Example: )2 is invalid
+                // Example: ")2" is invalid
             }
 
             // Update prevChar
@@ -63,9 +66,7 @@ public class Expression {
         }
 
         // Check last character
-        if (isOperation(prevChar)) return false;
-
-        return true;
+        return !isOperation(prevChar);
     }
 
     private boolean isDigit(char c) {
@@ -85,6 +86,7 @@ public class Expression {
     }
 
     private int getPriorityOperation(String operation) {
+        if (operation == null) return 0;
         if (operation.equals("*") || operation.equals("/")) return 2;
         if (operation.equals("+") || operation.equals("-")) return 1;
         return 0;
@@ -93,7 +95,7 @@ public class Expression {
     // Example: "-12+3*2" --> "0-12+3*2"
     // Example: "12+(-3+2)*2" --> "12+(0-3+2)*2"
     private String getNormalizeExpression() {
-        StringBuilder sb = new StringBuilder("");
+        StringBuilder sb = new StringBuilder();
 
         char prevChar = '(';
         for (int i = 0; i < expression.length(); i++) {
@@ -114,22 +116,22 @@ public class Expression {
         if (!isValidExpression()) return l;
 
         String e = getNormalizeExpression();
-        String token = "";
+        StringBuilder token = new StringBuilder();
         for (int i = 0; i < e.length(); i++) {
             char c = e.charAt(i);
             if (isDigit(c)) {
-                token += c;
+                token.append(c);
             } else {
                 if (token.length() > 0) {
-                    l.add(token);
-                    token = "";
+                    l.add(token.toString());
+                    token = new StringBuilder();
                 }
                 l.add(c + "");
             }
         }
 
         if (token.length() > 0) {
-            l.add(token);
+            l.add(token.toString());
         }
 
         return l;
@@ -140,7 +142,6 @@ public class Expression {
         StackInterface<String> stackOperations = new LinkedListStack<>();
 
         for (String token : infix) {
-
             if (token.matches("[0-9]+")) {  // If token is a number
                 postfix.add(token);
             } else if (token.equals("(")) {
@@ -156,7 +157,7 @@ public class Expression {
                     continue;
                 }
                 int currentPriority = getPriorityOperation(token);
-                int topPriority= getPriorityOperation(stackOperations.top());
+                int topPriority = getPriorityOperation(stackOperations.top());
                 while (currentPriority <= topPriority) {
                     postfix.add(stackOperations.pop());
                     if (stackOperations.isEmpty()) break;
@@ -183,21 +184,15 @@ public class Expression {
                 int num1 = Integer.parseInt(stack.pop());
                 int result = 0;
                 switch (token) {
-                    case "+":
-                        result = num1 + num2;
-                        break;
-                    case "-":
-                        result = num1 - num2;
-                        break;
-                    case "*":
-                        result = num1 * num2;
-                        break;
-                    case "/":
+                    case "+" -> result = num1 + num2;
+                    case "-" -> result = num1 - num2;
+                    case "*" -> result = num1 * num2;
+                    case "/" -> {
                         if (num2 == 0) return "Divide by zero";
                         result = num1 / num2;
-                        break;
-                    default:
-                        break;
+                    }
+                    default -> {
+                    }
                 }
                 stack.push(result + "");
             }

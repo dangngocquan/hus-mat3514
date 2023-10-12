@@ -10,7 +10,7 @@ public class Main {
         INPUT       : dangngocquan
 
         CODE EXECUTE:
-        MyStack stack = new MySinglyLinkedListStack();
+        StackInterface stack = new LinkedListStack();
         for (int i = 0; i < fullName.length(); i++) {
             if (i % 2 == 0) stack.push(fullName.charAt(i));
             if (i % 3 == 0) stack.pop();

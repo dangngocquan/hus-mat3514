@@ -1,8 +1,8 @@
-package hw4_21000699_dangngocquan.exercise004;
+package hw4_21000699_dangngocquan.base.queue;
 
 import java.util.Iterator;
 
-public class LinkedListQueue<E> implements QueueInterface<E> {
+public class LinkedListQueue<E> extends AbstractQueue<E> {
     class Node {
         E element;
         Node next;
@@ -83,17 +83,5 @@ public class LinkedListQueue<E> implements QueueInterface<E> {
             currentNode = currentNode.next;
             return element;
         }
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder("[");
-        Iterator iterator = iterator();
-        while (iterator.hasNext()) {
-            sb.append(iterator.next()).append(", ");
-        }
-        if (sb.length() > 1) sb.delete(sb.length()-2, sb.length());
-        sb.append("]");
-        return sb.toString();
     }
 }
