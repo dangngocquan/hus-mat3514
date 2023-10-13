@@ -63,7 +63,8 @@ public class ArrayStack<E> extends AbstractStack<E> {
     }
 
     private void enlarge() {
-        E[] newData = (E[]) new Object[data.length * 2];
+        if (data.length * 2 + 1 < data.length) throw new IllegalArgumentException();
+        E[] newData = (E[]) new Object[data.length * 2 + 1];
         System.arraycopy(data, 0, newData, 0, data.length);
         data = newData;
     }

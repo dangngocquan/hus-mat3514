@@ -30,6 +30,7 @@ public class ArrayQueue<E> extends AbstractQueue<E> {
 
     @Override
     public E dequeue() {
+        if (size == 0) return null;
         E element = data[firstIndex];
         firstIndex = (firstIndex + 1) % data.length;
         size--;
@@ -54,7 +55,8 @@ public class ArrayQueue<E> extends AbstractQueue<E> {
     }
 
     private void enlarge() {
-        E[] newData = (E[]) new Object[data.length * 2];
+        if (data.length * 2 + 1 < data.length) throw new IllegalArgumentException();
+        E[] newData = (E[]) new Object[data.length * 2 + 1];
         int i = 0;
         while (!isEmpty()) newData[i++] = dequeue();
         firstIndex = 0;
