@@ -1,7 +1,7 @@
 package hw5_21000699_dangngocquan.base;
 
 public class LinkedBinaryTree<E> extends AbstractBinaryTree<E, LinkedBinaryTree.LinkedBinaryTreeNode<E>> {
-    static class LinkedBinaryTreeNode<E> {
+    public static class LinkedBinaryTreeNode<E> {
         E element;
         LinkedBinaryTreeNode<E> parent;
         LinkedBinaryTreeNode<E> left;
@@ -17,10 +17,14 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E, LinkedBinaryTree.
             this.left = left;
             this.right = right;
         }
+
+        @Override
+        public String toString() {
+            return element.toString();
+        }
     }
 
     private LinkedBinaryTreeNode<E> root;
-    private int size;
 
     @Override
     public LinkedBinaryTreeNode<E> root() {
@@ -28,57 +32,31 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E, LinkedBinaryTree.
     }
 
     @Override
-    public int size() {
-        return size;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
-    @Override
-    public int numberChildren(LinkedBinaryTreeNode<E> p) {
-        if (p == null) return 0;
-        int count = 0;
-        if (p.left != null) count++;
-        if (p.right != null) count++;
-        return count;
+    public E element(LinkedBinaryTreeNode<E> p) {
+        return p.element;
     }
 
     @Override
     public LinkedBinaryTreeNode<E> parent(LinkedBinaryTreeNode<E> p) {
-        if (p == null) {
-            System.out.println("The current node is null.");
-            return null;
-        }
+        if (p == null) return null;
         return p.parent;
     }
 
     @Override
     public LinkedBinaryTreeNode<E> left(LinkedBinaryTreeNode<E> p) {
-        if (p == null) {
-            System.out.println("The current node is null.");
-            return null;
-        }
+        if (p == null) return null;
         return p.left;
     }
 
     @Override
     public LinkedBinaryTreeNode<E> right(LinkedBinaryTreeNode<E> p) {
-        if (p == null) {
-            System.out.println("The current node is null.");
-            return null;
-        }
+        if (p == null) return null;
         return p.right;
     }
 
     @Override
     public LinkedBinaryTreeNode<E> sibling(LinkedBinaryTreeNode<E> p) {
-        if (p == null) {
-            System.out.println("The current node is null.");
-            return null;
-        }
+        if (p == null) return null;
         if (p.parent == null) return null;
         return p.parent.left == p? p.parent.right : p.parent.left;
     }
@@ -88,41 +66,26 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E, LinkedBinaryTree.
             root = new LinkedBinaryTreeNode<>(
                     element, null, null, null
             );
-            size++;
-        } else {
-            System.out.println("Root already existed.");
         }
         return root;
     }
 
     public LinkedBinaryTreeNode<E> addLeft(LinkedBinaryTreeNode<E> p, E element) {
-        if (p == null) {
-            System.out.println("The current node is null.");
-            return null;
-        }
+        if (p == null) return null;
         if (p.left == null) {
             p.left = new LinkedBinaryTreeNode<>(
                     element, p, null, null
             );
-            size++;
-        } else {
-            System.out.println("The left node already existed.");
         }
         return p.left;
     }
 
     public LinkedBinaryTreeNode<E> addRight(LinkedBinaryTreeNode<E> p, E element) {
-        if (p == null) {
-            System.out.println("The current node is null.");
-            return null;
-        }
+        if (p == null) return null;
         if (p.right == null) {
             p.right = new LinkedBinaryTreeNode<>(
                     element, p, null, null
             );
-            size++;
-        } else {
-            System.out.println("The right node already existed.");
         }
         return p.right;
     }
