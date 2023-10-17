@@ -1,4 +1,4 @@
-package Tuan3.Bai8;
+package hw3_20001970_duongtuanson.Bai8;
 import java.util.LinkedList;
 import java.util.Scanner;
 public class getNthFromLast {

@@ -1,4 +1,4 @@
-package Tuan3.Bai6;
+package hw3_20001970_duongtuanson.Bai6;
 import java.util.LinkedList;
 public class linkedList {
     public static void main(String[] args) {

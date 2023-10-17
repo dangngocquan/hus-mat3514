@@ -1,4 +1,4 @@
-package Tuan3.Bai3;
+package hw3_20001970_duongtuanson.Bai3;
 
 public class SimpleLinkedList<T> {
     class Node{

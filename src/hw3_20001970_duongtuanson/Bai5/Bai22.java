@@ -1,4 +1,4 @@
-package Tuan3.Bai5;
+package hw3_20001970_duongtuanson.Bai5;
 import java.util.LinkedList;
 import java.util.Scanner;
 public class Bai22 {

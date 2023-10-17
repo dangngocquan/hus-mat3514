@@ -1,4 +1,5 @@
-package Tuan3.Bai2;
+package hw3_20001970_duongtuanson.Bai2;
+
 import java.util.Iterator;
 
 public class SimpleArrayList <T> implements ListInterface<T>{

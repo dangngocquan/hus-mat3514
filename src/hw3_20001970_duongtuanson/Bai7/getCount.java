@@ -1,4 +1,4 @@
-package Tuan3.Bai7;
+package hw3_20001970_duongtuanson.Bai7;
 import java.util.LinkedList;
 import java.util.Scanner;
 public class getCount {

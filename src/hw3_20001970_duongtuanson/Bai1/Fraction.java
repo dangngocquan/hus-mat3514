@@ -1,4 +1,4 @@
-package Tuan3.Bai1;
+package hw3_20001970_duongtuanson.Bai1;
 
 public class Fraction {
     private float numerator;

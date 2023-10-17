@@ -1,4 +1,4 @@
-package Tuan3.Bai2;
+package hw3_20001970_duongtuanson.Bai2;
 
 public interface ListInterface <T> extends Iterable<T>{
     public void add(T data);
