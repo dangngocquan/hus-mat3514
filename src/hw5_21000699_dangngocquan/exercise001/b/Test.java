@@ -96,7 +96,7 @@ public class Test {
         System.out.printf(
                 "%-25s %-15s %s\n",
                 String.format("element(%s)", p),
-                tree.element(p),
+                tree.elementOfNode(p),
                 tree.toString().replace("\n", "\n" + " ".repeat(42))
         );
         System.out.println("-".repeat(90));
@@ -154,7 +154,7 @@ public class Test {
             LinkedBinaryTree<String> tree, String element) {
         System.out.printf(
                 "%-25s %-15s %s\n",
-                String.format("setRoot(%s)", element),
+                String.format("addRoot(%s)", element),
                 tree.addRoot(element),
                 tree.toString().replace("\n", "\n" + " ".repeat(42))
         );
@@ -166,7 +166,7 @@ public class Test {
             LinkedBinaryTree.LinkedBinaryTreeNode<String> p, String element) {
         System.out.printf(
                 "%-25s %-15s %s\n",
-                String.format("setLeft(%s, %s)", p, element),
+                String.format("addLeft(%s, %s)", p, element),
                 tree.addLeft(p, element),
                 tree.toString().replace("\n", "\n" + " ".repeat(42))
         );
@@ -177,7 +177,7 @@ public class Test {
             LinkedBinaryTree<String> tree, LinkedBinaryTree.LinkedBinaryTreeNode<String> p, String element) {
         System.out.printf(
                 "%-25s %-15s %s\n",
-                String.format("setRight(%s, %s)", p, element),
+                String.format("addRight(%s, %s)", p, element),
                 tree.addRight(p, element),
                 tree.toString().replace("\n", "\n" + " ".repeat(42))
         );

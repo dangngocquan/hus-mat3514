@@ -2,11 +2,11 @@ package hw5_21000699_dangngocquan.base;
 
 public abstract class AbstractBinaryTree<E, T> implements BinaryTreeInterface<T> {
     // Get element of a node in tree
-    public abstract E element(T p);
+    public abstract E elementOfNode(T p);
 
     @Override
     public int size(T p) {
-        if (p == null || element(p) == null) return 0;
+        if (elementOfNode(p) == null) return 0;
         return 1 + size(left(p)) + size(right(p));
     }
 
@@ -22,17 +22,17 @@ public abstract class AbstractBinaryTree<E, T> implements BinaryTreeInterface<T>
 
     @Override
     public int numberChildren(T p) {
-        if (p == null || element(p) == null) return 0;
+        if (elementOfNode(p) == null) return 0;
         int count = 0;
-        if (element(left(p)) != null) count++;
-        if (element(right(p)) != null) count++;
+        if (elementOfNode(left(p)) != null) count++;
+        if (elementOfNode(right(p)) != null) count++;
         return count;
     }
 
     // Tree to string
     @Override
     public String toString() {
-        if (root() == null || element(root()) == null) return "";
+        if (elementOfNode(root()) == null) return "";
         StringBuilder sb = new StringBuilder();
         createStringRightRootLeft(sb, maxLengthStringNode(root()) + 2, root());
         if (sb.length() > 0) {
@@ -42,9 +42,9 @@ public abstract class AbstractBinaryTree<E, T> implements BinaryTreeInterface<T>
     }
 
     private int maxLengthStringNode(T node) {
-        if (node == null || element(node) == null) return 1;
+        if (elementOfNode(node) == null) return 1;
         return Math.max(
-                element(node).toString().length(),
+                elementOfNode(node).toString().length(),
                 Math.max(
                         maxLengthStringNode(left(node)),
                         maxLengthStringNode(right(node))
@@ -53,9 +53,9 @@ public abstract class AbstractBinaryTree<E, T> implements BinaryTreeInterface<T>
     }
 
     public void createStringRightRootLeft(StringBuilder sb, int lengthPerColumn, T p) {
-        if (p != null && element(p) != null) {
+        if (elementOfNode(p) != null) {
             // Draw right node
-            if (right(p) == null || element(right(p)) == null) {
+            if (elementOfNode(right(p)) == null) {
                 sb.append(
                         "\n".repeat(
                                 (1 << (height(root()) - level(p))) - 1
@@ -67,11 +67,11 @@ public abstract class AbstractBinaryTree<E, T> implements BinaryTreeInterface<T>
 
             // Draw root node
             sb.append(" ".repeat(lengthPerColumn * (level(p) - 1)))
-                    .append(element(p))
+                    .append(elementOfNode(p))
                     .append("\n");
 
             // Draw left node
-            if (left(p) == null || element(left(p)) == null) {
+            if (elementOfNode(left(p)) == null) {
                 sb.append(
                         "\n".repeat(
                                 (1 << (height(root()) - level(p))) - 1
@@ -84,13 +84,13 @@ public abstract class AbstractBinaryTree<E, T> implements BinaryTreeInterface<T>
     }
 
     public int level(T p) {
-        if (p == null || element(p) == null) return 0;
+        if (elementOfNode(p) == null) return 0;
         if (p == root()) return 1;
         return 1 + level(parent(p));
     }
 
     public int height(T p) {
-        if (p == null || element(p) == null) return 0;
+        if (elementOfNode(p) == null) return 0;
         return 1 + Math.max(height(left(p)), height(right(p)));
     }
 }

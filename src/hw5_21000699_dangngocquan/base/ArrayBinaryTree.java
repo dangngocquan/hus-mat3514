@@ -21,7 +21,7 @@ public class ArrayBinaryTree<E> extends AbstractBinaryTree<E, Integer> {
     }
 
     @Override
-    public E element(Integer p) {
+    public E elementOfNode(Integer p) {
         if (p == null) return null;
         if (isValidIndex(p)) return array[p];
         return null;

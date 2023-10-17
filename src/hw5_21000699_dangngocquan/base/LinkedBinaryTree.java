@@ -32,7 +32,8 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E, LinkedBinaryTree.
     }
 
     @Override
-    public E element(LinkedBinaryTreeNode<E> p) {
+    public E elementOfNode(LinkedBinaryTreeNode<E> p) {
+        if (p == null) return null;
         return p.element;
     }
 

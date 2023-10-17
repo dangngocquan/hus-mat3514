@@ -92,7 +92,7 @@ public class Test {
         System.out.printf(
                 "%-25s %-15s %s\n",
                 String.format("element(%s)", p),
-                tree.element(p),
+                tree.elementOfNode(p),
                 tree.toString().replace("\n", "\n" + " ".repeat(42))
         );
         System.out.println("-".repeat(90));
