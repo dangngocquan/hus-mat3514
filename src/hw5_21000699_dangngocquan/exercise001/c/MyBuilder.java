@@ -39,11 +39,11 @@ public class MyBuilder {
 
     private static void fillLinkedBinaryTreeBySampleData(LinkedBinaryTree<Integer> tree) {
         tree.addRoot(1);
-        LinkedBinaryTree.LinkedBinaryTreeNode<Integer> node1 = tree.root();
+        LinkedBinaryTree.Node<Integer> node1 = tree.root();
         tree.addLeft(node1, 5);
         tree.addRight(node1, 3);
-        LinkedBinaryTree.LinkedBinaryTreeNode<Integer> node3 = tree.right(node1);
-        LinkedBinaryTree.LinkedBinaryTreeNode<Integer> node5 = tree.left(node1);
+        LinkedBinaryTree.Node<Integer> node3 = tree.right(node1);
+        LinkedBinaryTree.Node<Integer> node5 = tree.left(node1);
         tree.addRight(node3, 7);
         tree.addLeft(node3, 2);
         tree.addRight(node5, 6);

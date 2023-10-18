@@ -19,11 +19,11 @@ public class Test {
         isEmpty(tree);
         numberChildren(tree, tree.root());
         addRoot(tree, "A");
-        LinkedBinaryTree.LinkedBinaryTreeNode<String> nodeA = tree.root(); // save to use later
+        LinkedBinaryTree.Node<String> nodeA = tree.root(); // save to use later
         addLeft(tree, nodeA, "A0");
-        LinkedBinaryTree.LinkedBinaryTreeNode<String> nodeA0 = tree.left(nodeA); // save to use later
+        LinkedBinaryTree.Node<String> nodeA0 = tree.left(nodeA); // save to use later
         addRight(tree, nodeA, "A1");
-        LinkedBinaryTree.LinkedBinaryTreeNode<String> nodeA1 = tree.right(nodeA); // save to use later
+        LinkedBinaryTree.Node<String> nodeA1 = tree.right(nodeA); // save to use later
         element(tree, nodeA);
         element(tree, nodeA0);
         element(tree, nodeA1);
@@ -38,7 +38,7 @@ public class Test {
         sibling(tree, nodeA0);
         sibling(tree, nodeA1);
         addLeft(tree, nodeA0, "A00");
-        LinkedBinaryTree.LinkedBinaryTreeNode<String> nodeA00 = tree.left(nodeA0); // save to use later
+        LinkedBinaryTree.Node<String> nodeA00 = tree.left(nodeA0); // save to use later
         addLeft(tree, nodeA1, "A10");
         addRight(tree, nodeA0, "A01");
         size(tree);
@@ -80,7 +80,7 @@ public class Test {
 
     public void numberChildren(
             LinkedBinaryTree<String> tree,
-            LinkedBinaryTree.LinkedBinaryTreeNode<String> p) {
+            LinkedBinaryTree.Node<String> p) {
         System.out.printf(
                 "%-25s %-15s %s\n",
                 String.format("numberChildren(%s)", p),
@@ -92,7 +92,7 @@ public class Test {
 
     public void element(
             LinkedBinaryTree<String> tree,
-            LinkedBinaryTree.LinkedBinaryTreeNode<String> p) {
+            LinkedBinaryTree.Node<String> p) {
         System.out.printf(
                 "%-25s %-15s %s\n",
                 String.format("element(%s)", p),
@@ -104,7 +104,7 @@ public class Test {
 
     public void parent(
             LinkedBinaryTree<String> tree,
-            LinkedBinaryTree.LinkedBinaryTreeNode<String> p) {
+            LinkedBinaryTree.Node<String> p) {
         System.out.printf(
                 "%-25s %-15s %s\n",
                 String.format("parent(%s)", p),
@@ -116,7 +116,7 @@ public class Test {
 
     public void left(
             LinkedBinaryTree<String> tree,
-            LinkedBinaryTree.LinkedBinaryTreeNode<String> p) {
+            LinkedBinaryTree.Node<String> p) {
         System.out.printf(
                 "%-25s %-15s %s\n",
                 String.format("left(%s)", p),
@@ -128,7 +128,7 @@ public class Test {
 
     public void right(
             LinkedBinaryTree<String> tree,
-            LinkedBinaryTree.LinkedBinaryTreeNode<String> p) {
+            LinkedBinaryTree.Node<String> p) {
         System.out.printf(
                 "%-25s %-15s %s\n",
                 String.format("right(%s)", p),
@@ -140,7 +140,7 @@ public class Test {
 
     public void sibling(
             LinkedBinaryTree<String> tree,
-            LinkedBinaryTree.LinkedBinaryTreeNode<String> p) {
+            LinkedBinaryTree.Node<String> p) {
         System.out.printf(
                 "%-25s %-15s %s\n",
                 String.format("sibling(%s)", p),
@@ -163,7 +163,7 @@ public class Test {
 
     public void addLeft(
             LinkedBinaryTree<String> tree,
-            LinkedBinaryTree.LinkedBinaryTreeNode<String> p, String element) {
+            LinkedBinaryTree.Node<String> p, String element) {
         System.out.printf(
                 "%-25s %-15s %s\n",
                 String.format("addLeft(%s, %s)", p, element),
@@ -174,7 +174,7 @@ public class Test {
     }
 
     public void addRight(
-            LinkedBinaryTree<String> tree, LinkedBinaryTree.LinkedBinaryTreeNode<String> p, String element) {
+            LinkedBinaryTree<String> tree, LinkedBinaryTree.Node<String> p, String element) {
         System.out.printf(
                 "%-25s %-15s %s\n",
                 String.format("addRight(%s, %s)", p, element),

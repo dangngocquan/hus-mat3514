@@ -4,19 +4,19 @@ import hw5_21000699_dangngocquan.base.LinkedBinaryTree;
 
 public class ExpressionTree extends LinkedBinaryTree<String> {
     // PRINT
-    public void preorderPrint(LinkedBinaryTreeNode<String> p) {
+    public void preorderPrint(Node<String> p) {
         if (elementOfNode(p) != null) System.out.print(" " + elementOfNode(p) + " ");
         if (elementOfNode(left(p)) != null) preorderPrint(left(p));
         if (elementOfNode(right(p)) != null) preorderPrint(right(p));
     }
 
-    public void postorderPrint(LinkedBinaryTreeNode<String> p) {
+    public void postorderPrint(Node<String> p) {
         if (elementOfNode(left(p)) != null) postorderPrint(left(p));
         if (elementOfNode(right(p)) != null) postorderPrint(right(p));
         if (elementOfNode(p) != null) System.out.print(" " + elementOfNode(p) + " ");
     }
 
-    public void inorderPrint(LinkedBinaryTreeNode<String> p) {
+    public void inorderPrint(Node<String> p) {
         if (numberChildren(p) == 2) System.out.print("(");
         if (elementOfNode(left(p)) != null) inorderPrint(left(p));
         if (elementOfNode(p) != null) System.out.print(" " + elementOfNode(p) + " ");
@@ -35,7 +35,7 @@ public class ExpressionTree extends LinkedBinaryTree<String> {
         return evaluateToString(root());
     }
 
-    private String evaluateToString(LinkedBinaryTreeNode<String> p) {
+    private String evaluateToString(Node<String> p) {
         if (isOperation(elementOfNode(p))) {
             String leftEvaluation = evaluateToString(left(p));
             String rightEvaluation = evaluateToString(right(p));

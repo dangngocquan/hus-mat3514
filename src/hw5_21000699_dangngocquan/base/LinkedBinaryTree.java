@@ -1,17 +1,17 @@
 package hw5_21000699_dangngocquan.base;
 
-public class LinkedBinaryTree<E> extends AbstractBinaryTree<E, LinkedBinaryTree.LinkedBinaryTreeNode<E>> {
-    public static class LinkedBinaryTreeNode<E> {
-        E element;
-        LinkedBinaryTreeNode<E> parent;
-        LinkedBinaryTreeNode<E> left;
-        LinkedBinaryTreeNode<E> right;
+public class LinkedBinaryTree<E> extends AbstractBinaryTree<E, LinkedBinaryTree.Node<E>> {
+    public static class Node<E> {
+        public E element;
+        public Node<E> parent;
+        public Node<E> left;
+        public Node<E> right;
 
-        public LinkedBinaryTreeNode(
+        public Node(
                 E element,
-                LinkedBinaryTreeNode<E> parent,
-                LinkedBinaryTreeNode<E> left,
-                LinkedBinaryTreeNode<E> right) {
+                Node<E> parent,
+                Node<E> left,
+                Node<E> right) {
             this.element = element;
             this.parent = parent;
             this.left = left;
@@ -20,73 +20,96 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E, LinkedBinaryTree.
 
         @Override
         public String toString() {
-            return element.toString();
+            return element == null? "null" : element.toString();
         }
     }
 
-    private LinkedBinaryTreeNode<E> root;
+    private Node<E> root;
 
     @Override
-    public LinkedBinaryTreeNode<E> root() {
+    public Node<E> root() {
         return root;
     }
 
     @Override
-    public E elementOfNode(LinkedBinaryTreeNode<E> p) {
+    public E elementOfNode(Node<E> p) {
         if (p == null) return null;
         return p.element;
     }
 
     @Override
-    public LinkedBinaryTreeNode<E> parent(LinkedBinaryTreeNode<E> p) {
+    public Node<E> parent(Node<E> p) {
         if (p == null) return null;
         return p.parent;
     }
 
     @Override
-    public LinkedBinaryTreeNode<E> left(LinkedBinaryTreeNode<E> p) {
+    public Node<E> left(Node<E> p) {
         if (p == null) return null;
         return p.left;
     }
 
     @Override
-    public LinkedBinaryTreeNode<E> right(LinkedBinaryTreeNode<E> p) {
+    public Node<E> right(Node<E> p) {
         if (p == null) return null;
         return p.right;
     }
 
     @Override
-    public LinkedBinaryTreeNode<E> sibling(LinkedBinaryTreeNode<E> p) {
+    public Node<E> sibling(Node<E> p) {
         if (p == null) return null;
         if (p.parent == null) return null;
         return p.parent.left == p? p.parent.right : p.parent.left;
     }
 
-    public LinkedBinaryTreeNode<E> addRoot(E element) {
+    public Node<E> addRoot(E element) {
         if (root == null) {
-            root = new LinkedBinaryTreeNode<>(
+            root = new Node<>(
                     element, null, null, null
             );
         }
         return root;
     }
 
-    public LinkedBinaryTreeNode<E> addLeft(LinkedBinaryTreeNode<E> p, E element) {
+    public Node<E> addLeft(Node<E> p, E element) {
         if (p == null) return null;
         if (p.left == null) {
-            p.left = new LinkedBinaryTreeNode<>(
+            p.left = new Node<>(
                     element, p, null, null
             );
         }
         return p.left;
     }
 
-    public LinkedBinaryTreeNode<E> addRight(LinkedBinaryTreeNode<E> p, E element) {
+    public Node<E> addRight(Node<E> p, E element) {
         if (p == null) return null;
         if (p.right == null) {
-            p.right = new LinkedBinaryTreeNode<>(
+            p.right = new Node<>(
                     element, p, null, null
             );
+        }
+        return p.right;
+    }
+
+    public Node<E> addRoot(Node<E> p) {
+        if (root == null) {
+            root = p;
+        }
+        return root;
+    }
+
+    public Node<E> addLeft(Node<E> p, Node<E> leftP) {
+        if (p == null) return null;
+        if (p.left == null) {
+            p.left = leftP;
+        }
+        return p.left;
+    }
+
+    public Node<E> addRight(Node<E> p, Node<E> rightP) {
+        if (p == null) return null;
+        if (p.right == null) {
+            p.right = rightP;
         }
         return p.right;
     }
