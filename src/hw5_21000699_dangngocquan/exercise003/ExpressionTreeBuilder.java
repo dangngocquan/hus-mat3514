@@ -3,7 +3,7 @@ package hw5_21000699_dangngocquan.exercise003;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class Solution {
+public abstract class ExpressionTreeBuilder {
     /*
     *
     * Return an expression tree if input tokens is valid.
@@ -50,7 +50,7 @@ public abstract class Solution {
 
     protected boolean isNumber(String token) {
         if (token == null) return false;
-        return token.matches("[0-9]{1,13}(\\.[0-9]*)?");
+        return token.matches("([+-])?[0-9]{1,13}(\\.[0-9]*)?(E-[0-9]+)?");
     }
 
     protected boolean isOperation(String token) {

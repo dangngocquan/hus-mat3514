@@ -3,7 +3,6 @@ package hw5_21000699_dangngocquan.exercise003;
 public class Main {
     public static void main(String[] args) {
         new Test().run();
-
 /*
 
 Solution using        Input (Array tokens)                                                              Output (Expression tree)

@@ -104,7 +104,7 @@ public class Test {
     }
 
     public void testSolution1(String[] tokens) {
-        Object result = new Solution1().buildExpressionTree(tokens);
+        Object result = new ExpressionTreeBuilder1().buildExpressionTree(tokens);
         String output = result.toString();
         if (result instanceof ExpressionTree)
             output = output.replace("\n", "\n" + " ".repeat(104));
@@ -118,7 +118,7 @@ public class Test {
     }
 
     public void testSolution2(String[] tokens) {
-        Object result = new Solution2().buildExpressionTree(tokens);
+        Object result = new ExpressionTreeBuilder2().buildExpressionTree(tokens);
         String output = result.toString();
         if (result instanceof ExpressionTree)
             output = output.replace("\n", "\n" + " ".repeat(104));

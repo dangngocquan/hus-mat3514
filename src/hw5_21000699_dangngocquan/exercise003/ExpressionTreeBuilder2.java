@@ -13,7 +13,7 @@ import java.util.Stack;
 * Then, use postfix tokens to create expression tree.
 *
 * */
-public class Solution2 extends Solution {
+public class ExpressionTreeBuilder2 extends ExpressionTreeBuilder {
     @Override
     public Object buildExpressionTree(String[] tokens) {
         tokens = reformatInfixTokens(tokens);

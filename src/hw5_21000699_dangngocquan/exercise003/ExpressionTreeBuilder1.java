@@ -8,7 +8,7 @@ import hw5_21000699_dangngocquan.exercise002.a.ExpressionTree;
 * This solution will directly build expression tree from tokens input.
 *
 */
-public class Solution1 extends Solution {
+public class ExpressionTreeBuilder1 extends ExpressionTreeBuilder {
     @Override
     public Object buildExpressionTree(String[] tokens) {
         tokens = reformatInfixTokens(tokens);
