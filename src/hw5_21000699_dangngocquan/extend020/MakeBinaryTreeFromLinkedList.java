@@ -3,6 +3,7 @@ package hw5_21000699_dangngocquan.extend020;
 import java.util.LinkedList;
 import java.util.Queue;
 
+// Link: https://practice.geeksforgeeks.org/problems/make-binary-tree/1
 public class MakeBinaryTreeFromLinkedList {
     static class Tree {
         int data;
@@ -37,12 +38,12 @@ public class MakeBinaryTreeFromLinkedList {
             Queue<Tree> queue = new LinkedList<>();
             int index = 1;
             while (head != null) {
+                Tree newNode = new Tree(head.data);
+                queue.add(newNode);
                 if (index % 2 == 1) {
-                    node.left = new Tree(head.data);
-                    queue.add(node.left);
+                    node.left = newNode;
                 } else {
-                    node.right = new Tree(head.data);
-                    queue.add(node.right);
+                    node.right = newNode;
                     node = queue.poll();
                 }
                 head = head.next;

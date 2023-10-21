@@ -2,6 +2,7 @@ package hw5_21000699_dangngocquan.extend011;
 
 import java.util.ArrayList;
 
+// Link: https://practice.geeksforgeeks.org/problems/inorder-traversal/1
 public class InorderTraversal {
     static class Node {
         int data;
@@ -18,12 +19,15 @@ public class InorderTraversal {
         ArrayList<Integer> inOrder(Node root) {
             // Code
             ArrayList<Integer> list = new ArrayList<>();
-            if (root != null) {
-                list.addAll(inOrder(root.left));
-                list.add(root.data);
-                list.addAll(inOrder(root.right));
-            }
+            inOrder(root, list);
             return list;
+        }
+
+        public void inOrder(Node node, ArrayList<Integer> list) {
+            if (node == null) return;
+            inOrder(node.left, list);
+            list.add(node.data);
+            inOrder(node.right, list);
         }
     }
 
