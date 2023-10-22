@@ -30,7 +30,6 @@ public class MakeBinaryTreeFromLinkedList {
     static class GfG {
         // Function to make binary tree from linked list.
         public static Tree convert(Node head, Tree node) {
-            // add code here.}
             if (node == null) node = new Tree(head.data);
             node.data = head.data;
             Tree root = node;
