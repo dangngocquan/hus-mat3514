@@ -2,7 +2,8 @@ package hw5_21000699_dangngocquan.extend001.task052;
 
 import java.util.Scanner;
 
-public class Solution {
+// Link: https://codelearn.io/learning/data-structure-and-algorithms?activityType=12&activityId=1297
+public class CalculateFactorial {
     // Calculate n!
     // Return null if overflow
     public static Long factorial(long n) {

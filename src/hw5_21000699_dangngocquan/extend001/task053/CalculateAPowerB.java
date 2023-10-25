@@ -2,7 +2,8 @@ package hw5_21000699_dangngocquan.extend001.task053;
 
 import java.util.Scanner;
 
-public class Solution {
+// Link: https://codelearn.io/learning/data-structure-and-algorithms?activityType=12&activityId=1298
+public class CalculateAPowerB {
     // Calculate a^b
     // Return null if overflow or a < 0 or b < 0 (Condition of problem: a >= 0, b >= 0)
     public static Long pow(long a, long b) {
