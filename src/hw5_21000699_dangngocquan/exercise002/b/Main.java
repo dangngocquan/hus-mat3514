@@ -11,17 +11,11 @@ public class Main {
         INPUT
         Expression string: (6/3+2)*(7-4)
         Expression tree:
-
               4
-
            -
-
               7
-
         *
-
               2
-
            +
                  3
               /
@@ -38,9 +32,7 @@ public class Main {
         INPUT
         Expression string: 1+2*3-1/2*2
         Expression tree:
-
               2
-
            *
                  2
               /
@@ -50,9 +42,7 @@ public class Main {
               *
                  2
            +
-
               1
-
 
         OUTPUT:
         Pre-order:
@@ -65,37 +55,17 @@ public class Main {
         INPUT
         Expression string: 1+2+3*(1+2)/4
         Expression tree:
-
-
-
               4
-
-
-
            /
                     2
                  +
                     1
               *
-
                  3
-
         +
-
-
-
               2
-
-
-
            +
-
-
-
               1
-
-
-
 
         OUTPUT:
         Pre-order:
@@ -108,37 +78,17 @@ public class Main {
         INPUT
         Expression string: 1.2+2.3+3.4*(1.2+2.3)/4.5
         Expression tree:
-
-
-
                   4.5
-
-
-
              /
                             2.3
                        +
                             1.2
                   *
-
                        3.4
-
         +
-
-
-
                   2.3
-
-
-
              +
-
-
-
                   1.2
-
-
-
 
         OUTPUT:
         Pre-order:

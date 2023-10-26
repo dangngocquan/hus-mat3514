@@ -35,9 +35,7 @@ public abstract class AbstractBinaryTree<E, T> implements BinaryTreeInterface<T>
         if (elementOfNode(root()) == null) return "";
         StringBuilder sb = new StringBuilder();
         createStringRightRootLeft(sb, maxLengthStringNode(root()) + 2, root());
-        if (sb.length() > 0) {
-            sb.delete(sb.length()-1, sb.length());
-        }
+        if (sb.length() > 0) sb.delete(sb.length()-1, sb.length());
         return sb.toString();
     }
 
@@ -55,31 +53,14 @@ public abstract class AbstractBinaryTree<E, T> implements BinaryTreeInterface<T>
     public void createStringRightRootLeft(StringBuilder sb, int lengthPerColumn, T p) {
         if (elementOfNode(p) != null) {
             // Draw right node
-            if (elementOfNode(right(p)) == null) {
-                sb.append(
-                        "\n".repeat(
-                                (1 << (height(root()) - level(p))) - 1
-                        )
-                );
-            } else {
-                createStringRightRootLeft(sb, lengthPerColumn, right(p));
-            }
+            if (elementOfNode(right(p)) != null) createStringRightRootLeft(sb, lengthPerColumn, right(p));
 
             // Draw root node
             sb.append(" ".repeat(lengthPerColumn * (level(p) - 1)))
                     .append(elementOfNode(p))
                     .append("\n");
-
             // Draw left node
-            if (elementOfNode(left(p)) == null) {
-                sb.append(
-                        "\n".repeat(
-                                (1 << (height(root()) - level(p))) - 1
-                        )
-                );
-            } else {
-                createStringRightRootLeft(sb, lengthPerColumn, left(p));
-            }
+            if (elementOfNode(left(p)) != null) createStringRightRootLeft(sb, lengthPerColumn, left(p));
         }
     }
 

@@ -10,17 +10,11 @@ public class Main {
         INPUT
         Expression string: (6/3+2)*(7-4)
         Expression tree:
-
               4
-
            -
-
               7
-
         *
-
               2
-
            +
                  3
               /
@@ -32,9 +26,7 @@ public class Main {
         INPUT
         Expression string: 1+2*3-1/2*2
         Expression tree:
-
               2
-
            *
                  2
               /
@@ -44,9 +36,7 @@ public class Main {
               *
                  2
            +
-
               1
-
 
         OUTPUT:
         6.0
@@ -54,9 +44,7 @@ public class Main {
         INPUT
         Expression string: (1/2)+0.3
         Expression tree:
-
              0.3
-
         +
                   2
              /
@@ -68,65 +56,13 @@ public class Main {
         INPUT
         Expression string: (1/2+0.5+3.2)/2/3
         Expression tree:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
              3
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         /
-
-
-
-
-
-
-
                   2
-
-
-
-
-
-
-
              /
-
-
-
                        3.2
-
-
-
                   +
-
                             0.5
-
                        +
                                  2
                             /
@@ -138,9 +74,7 @@ public class Main {
         INPUT
         Expression string: 3/0+2
         Expression tree:
-
            2
-
         +
               0
            /
@@ -170,9 +104,7 @@ public class Main {
              /
                   1.2
         -
-
              0
-
 
         OUTPUT:
         -0.39999999999999997
@@ -180,21 +112,13 @@ public class Main {
         INPUT
         Expression string: -1.2/3+0.4
         Expression tree:
-
-
-
              0.4
-
-
-
         +
                        3
                   /
                        1.2
              -
-
                   0
-
 
         OUTPUT:
         5.551115123125783E-17
@@ -212,43 +136,21 @@ public class Main {
         INPUT
         Expression string: -1.2/3+0.4+1.5*3
         Expression tree:
-
-
-
                   3
-
-
-
              *
-
-
-
                   1.5
-
-
-
         +
-
-
-
                   0.4
-
-
-
              +
                             3
                        /
                             1.2
                   -
-
                        0
-
 
         OUTPUT:
         4.5
-        --------------------------------------------------------------------------------
-
-        */
+        --------------------------------------------------------------------------------*/
 
     }
 }
