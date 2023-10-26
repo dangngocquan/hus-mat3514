@@ -1,0 +1,4 @@
+Kết quả của stack tùy theo hoten.length():
+- hoten.length() <= 2 || hoten.length() == 4: stack rỗng.
+- hoten.length() == 3: stack chứa ký tự ở index 2.
+- hoten.length() >= 5: stack chứa ký tự ở các index thỏa mãn 6n + 4 (n là số tự nhiên).
