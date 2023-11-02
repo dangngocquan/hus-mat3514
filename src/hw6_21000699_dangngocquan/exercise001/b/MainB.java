@@ -1,8 +1,8 @@
 package hw6_21000699_dangngocquan.exercise001.b;
 
-public class Main {
+public class MainB {
     public static void main(String[] args) {
-        new Test().run();
+        new TestB().run();
 
         // Sample
 

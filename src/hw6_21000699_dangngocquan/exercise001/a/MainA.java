@@ -1,14 +1,14 @@
-package hw6_21000699_dangngocquan.exercise001.c;
+package hw6_21000699_dangngocquan.exercise001.a;
 
-public class Main {
+public class MainA {
     public static void main(String[] args) {
-        new Test().run();
+        new TestA().run();
 
         // Sample
 
 /*
 
-TEST UNSORTED LINKED PRIORITY QUEUE
+TEST UNSORTED ARRAY PRIORITY QUEUE
 Action                                    Return                          Priority queue after action
 --------------------------------------------------------------------------------------------------------------------------------------
 size()                                    0                               PriorityQueue[]

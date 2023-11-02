@@ -1,10 +1,10 @@
 package hw6_21000699_dangngocquan.exercise001.b;
 
 import hw6_21000699_dangngocquan.base.SortedArrayPriorityQueue;
-import hw6_21000699_dangngocquan.exercise001.AbstractTest;
+import hw6_21000699_dangngocquan.exercise001.AbstractTestABCD;
 
-public class Test extends AbstractTest {
-    public Test() {
+public class TestB extends AbstractTestABCD {
+    public TestB() {
         super(new SortedArrayPriorityQueue<>());
     }
 

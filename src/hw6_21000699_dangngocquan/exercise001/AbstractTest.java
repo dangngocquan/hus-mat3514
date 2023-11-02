@@ -1,36 +1,16 @@
 package hw6_21000699_dangngocquan.exercise001;
 
-import hw6_21000699_dangngocquan.base.AbstractPriorityQueue;
 import hw6_21000699_dangngocquan.base.EntryInterface;
 import hw6_21000699_dangngocquan.base.PriorityQueueInterface;
 
-public abstract class AbstractTest {
-    PriorityQueueInterface<Integer, String> queue;
+public abstract class AbstractTest<K, E> {
+    protected PriorityQueueInterface<K, E> queue;
 
-    public AbstractTest(PriorityQueueInterface<Integer, String> queue) {
+    public AbstractTest(PriorityQueueInterface<K, E> queue) {
         this.queue = queue;
     }
 
-    public void run() {
-        header();
-        testSize(queue);
-        testIsEmpty(queue);
-        testInsert1(queue, new AbstractPriorityQueue.Entry<>(10, "a"));
-        testInsert2(queue, 4, "b");
-        testInsert2(queue, 7, "c");
-        testMin(queue);
-        testRemoveMin(queue);
-        testInsert2(queue, 1, "d");
-        testInsert2(queue, 5, "e");
-        testInsert2(queue, 3, "f");
-        testSize(queue);
-        testIsEmpty(queue);
-        testMin(queue);
-        testRemoveMin(queue);
-        testRemoveMin(queue);
-        testRemoveMin(queue);
-        testRemoveMin(queue);
-    }
+    public abstract void run();
 
     public abstract void printNameTest();
 
@@ -45,7 +25,7 @@ public abstract class AbstractTest {
         System.out.println("-".repeat(134));
     }
 
-    public void testSize(PriorityQueueInterface<Integer, String> queue) {
+    public void testSize(PriorityQueueInterface<K, E> queue) {
         System.out.printf(
                 "%-40s  %-30s  %-60s\n",
                 "size()",
@@ -54,7 +34,7 @@ public abstract class AbstractTest {
         );
     }
 
-    public void testIsEmpty(PriorityQueueInterface<Integer, String> queue) {
+    public void testIsEmpty(PriorityQueueInterface<K, E> queue) {
         System.out.printf(
                 "%-40s  %-30s  %-60s\n",
                 "isEmpty()",
@@ -64,8 +44,8 @@ public abstract class AbstractTest {
     }
 
     public void testInsert1(
-            PriorityQueueInterface<Integer, String> queue,
-            EntryInterface<Integer,String> entry) {
+            PriorityQueueInterface<K, E> queue,
+            EntryInterface<K,E> entry) {
         queue.insert(entry);
         System.out.printf(
                 "%-40s  %-30s  %-60s\n",
@@ -76,8 +56,8 @@ public abstract class AbstractTest {
     }
 
     public void testInsert2(
-            PriorityQueueInterface<Integer, String> queue,
-            Integer key, String value) {
+            PriorityQueueInterface<K, E> queue,
+            K key, E value) {
         queue.insert(key, value);
         System.out.printf(
                 "%-40s  %-30s  %-60s\n",
@@ -87,7 +67,7 @@ public abstract class AbstractTest {
         );
     }
 
-    public void testMin(PriorityQueueInterface<Integer, String> queue) {
+    public void testMin(PriorityQueueInterface<K, E> queue) {
         System.out.printf(
                 "%-40s  %-30s  %-60s\n",
                 "min()",
@@ -96,7 +76,7 @@ public abstract class AbstractTest {
         );
     }
 
-    public void testRemoveMin(PriorityQueueInterface<Integer, String> queue) {
+    public void testRemoveMin(PriorityQueueInterface<K, E> queue) {
         System.out.printf(
                 "%-40s  %-30s  %-60s\n",
                 "removeMin()",

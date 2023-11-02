@@ -1,10 +1,10 @@
 package hw6_21000699_dangngocquan.exercise001.c;
 
 import hw6_21000699_dangngocquan.base.UnsortedLinkedPriorityQueue;
-import hw6_21000699_dangngocquan.exercise001.AbstractTest;
+import hw6_21000699_dangngocquan.exercise001.AbstractTestABCD;
 
-public class Test extends AbstractTest {
-    public Test() {
+public class TestC extends AbstractTestABCD {
+    public TestC() {
         super(new UnsortedLinkedPriorityQueue<>());
     }
 
