@@ -39,15 +39,18 @@ public abstract class AbstractArrayPriorityQueue<K extends Comparable<K>, E>
     }
 
     protected class ArrayQueueIterator implements Iterator<EntryInterface<K, E>> {
-        private int currentPosition = 0;
+        private int count = 0;
+        private int currentPosition= 0;
 
         @Override
         public boolean hasNext() {
-            return currentPosition < size;
+            return count < size;
         }
 
         @Override
         public EntryInterface<K, E> next() {
+            while (count < size && data[currentPosition] == null) currentPosition++;
+            count++;
             return data[currentPosition++];
         }
     }
