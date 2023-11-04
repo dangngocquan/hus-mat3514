@@ -3,7 +3,7 @@ package hw6_21000699_dangngocquan.exercise003.sort;
 import java.util.Arrays;
 
 public class MergeSort {
-    public static <T extends Comparable<T>> void sort(T[] a) {
+    public <T extends Comparable<T>> void sort(T[] a) {
         mergeSort(a, 0, a.length-1);
     }
 

@@ -1,7 +1,7 @@
 package hw6_21000699_dangngocquan.exercise003.sort;
 
 public class InsertionSort {
-    public static <T extends Comparable<T>> void sort(T[] a) {
+    public <T extends Comparable<T>> void sort(T[] a) {
         for (int i = 1; i < a.length; i++) {
             T valueInsert = a[i];
             int j = i-1;

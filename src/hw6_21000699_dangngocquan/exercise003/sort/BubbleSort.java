@@ -1,7 +1,7 @@
 package hw6_21000699_dangngocquan.exercise003.sort;
 
 public class BubbleSort {
-    public static <T extends Comparable<T>> void sort(T[] a) {
+    public <T extends Comparable<T>> void sort(T[] a) {
         for (int i = 0; i < a.length-1; i++) {
             boolean isSorted = true;
             for (int j = 1; j < a.length-i; j++) {

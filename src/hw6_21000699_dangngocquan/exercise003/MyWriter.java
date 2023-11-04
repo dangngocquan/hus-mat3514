@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 
-public class MyFileWriter {
-    public static void writeToFile(String document) {
+public class MyWriter {
+    public void writeToFile(String document) {
         // Create folder if not exist
         String pathDir = System.getProperty("user.dir")
                 + "/src/hw6_21000699_dangngocquan/exercise003";
@@ -21,7 +21,8 @@ public class MyFileWriter {
 
         // Create file if not exist
         String pathFile = pathDir + "/statistic.txt";
-        File file = new File(pathFile);
+        File file;
+        file = new File(pathFile);
         if (!file.exists()) {
             try {
                 boolean wasSuccessful = file.createNewFile();
