@@ -5,20 +5,13 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 
 public class TextField extends JTextField {
-    private int x;
-    private int y;
-    private int width;
-    private int height;
-    private int thickness;
-    private int arcWidth, arcHeight;
+    private final int thickness;
+    private final int arcWidth;
+    private final int arcHeight;
 
     public TextField(int x, int y, int width, int height, String initialValue, Color backgroundColor, int thickness, int arcWidth, int arcHeight) {
         super(initialValue, height);
 
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
         this.thickness = thickness;
         this.arcWidth = arcWidth;
         this.arcHeight = arcHeight;

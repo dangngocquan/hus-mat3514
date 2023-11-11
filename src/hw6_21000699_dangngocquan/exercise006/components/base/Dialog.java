@@ -1,4 +1,4 @@
-package hw6_21000699_dangngocquan.exercise005.components.base;
+package hw6_21000699_dangngocquan.exercise006.components.base;
 
 import javax.swing.*;
 

@@ -1,6 +1,6 @@
-package hw6_21000699_dangngocquan.exercise005.components.base;
+package hw6_21000699_dangngocquan.exercise006.components.base;
 
-import hw6_21000699_dangngocquan.exercise005.Config;
+import hw6_21000699_dangngocquan.exercise006.Config;
 
 import javax.swing.*;
 

@@ -12,7 +12,6 @@ import hw6_21000699_dangngocquan.exercise005.models.Event;
 import java.awt.*;
 
 public class ViewAirportEvents extends Panel {
-    private Table tableAirportEvents;
 
     public ViewAirportEvents() {
         super(
@@ -38,7 +37,7 @@ public class ViewAirportEvents extends Panel {
         for (int i = 0; i < dataRows.length; i++) {
             q.insert(qBackup.removeMin());
         }
-        tableAirportEvents = new Table(
+        Table tableAirportEvents = new Table(
                 20, 20, getWidth() - 40, getHeight() - 40,
                 dataRows, columnNames
         );

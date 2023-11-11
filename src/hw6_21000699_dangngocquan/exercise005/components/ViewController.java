@@ -97,9 +97,7 @@ public class ViewController extends Panel {
             dialog.add(panel);
             dialog.add(button);
 
-            button.addActionListener(e -> {
-                dialog.dispose();
-            });
+            button.addActionListener(e -> dialog.dispose());
         }
     }
 

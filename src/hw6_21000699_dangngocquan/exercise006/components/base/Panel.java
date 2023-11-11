@@ -1,6 +1,6 @@
-package hw6_21000699_dangngocquan.exercise005.components.base;
+package hw6_21000699_dangngocquan.exercise006.components.base;
 
-import hw6_21000699_dangngocquan.exercise005.Config;
+import hw6_21000699_dangngocquan.exercise006.Config;
 
 import javax.swing.*;
 import java.awt.*;
@@ -98,7 +98,7 @@ public class Panel extends JPanel {
         }
 
         g2d.setColor(Config.COLOR_TEXT);
-        g2d.setFont(Config.ARIAL_BOLD_18);
+        g2d.setFont(Config.ARIAL_BOLD_16);
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
                 RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         FontMetrics fontMetric = g2d.getFontMetrics();
