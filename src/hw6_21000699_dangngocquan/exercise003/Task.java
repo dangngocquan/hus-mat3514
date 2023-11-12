@@ -1,6 +1,6 @@
 package hw6_21000699_dangngocquan.exercise003;
 
-import hw6_21000699_dangngocquan.exercise003.generator.Generator;
+import hw7_21000699_dangngocquan.exercise001.generator.Generator;
 
 public class Task {
     public void solve() {
