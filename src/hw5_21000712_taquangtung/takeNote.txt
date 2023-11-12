@@ -1,0 +1,34 @@
+Họ và tên: Tạ Quang Tùng
+MSV: 21000712
+Lớp: K66A2 Toán Tin
+
+GÓI BÀI TẬP LỰA CHỌN:
+1. Combo 1 + Combo2 + Combo4: Bài 1, Bài 2 (cơ bản), Bài 3 (nâng cao), Bài 5 (nâng cao)
+
++ Bài 1:
+Tạo Interface để ArrayBinaryTree và LinkedBinaryTree sử dụng đến
+ArrayBinaryTree và LinkedBinaryTree thực hiện các chức năng của InterfaceTree
+Mỗi loại ArrayBinaryTree và LinkedBinaryTree sẽ vẽ ra hình dạng cây như yêu cầu đề bài
+Ghi file kết quả vào file.txt với ArrayBinaryTree có output1.txt và LinkedBinaryTree có output2.txt
+
++ Bài 2:
+Sử dụng các phương thức để duyệt các dạng hình cấu trúc cây (In-Order - biểu diễn của biểu thức)
+Sử dụng đệ quy để tính toán giá trị của biểu thức (Post-Order - tính toán giá trị của biểu thức)
+Kết hợp Stack và ArrayList trong quá trình lọc phần tử để tính toán
+Dữ liệu đầu vào test chương trình có sẵn qua vòng lặp mảng
+
++ Bài 3:
+Sử dụng Cấu trúc liên kết LinkedList với class TreeNode để tạo Node
+Chuyển mảng có sẵn từ dạng trung tố về hậu tố
+Đưa các phần tử trong mảng hậu tố vào LinkedBinaryTree
+Duyệt các phần tử trong Tree và in ra mô hình cây cơ bản
+
++ Bài 5:
+Biểu diễn hình dáng của cây nhị phân trên Terminal
+Sử dụng ArrayBinaryTree có từ bài 1
+
+2. Bài tập thêm:
+Luyện tập 1 --> 6 bài (52, 53, 54, 55, 56, 57)
+Mục A --> 1 bài (practice02)
+Mục B --> 1 bài (practice11)
+Mục C --> 1 bài (practice20)

@@ -1,0 +1,16 @@
+1. Binary hw5_21000689_nguyenxuanloi created by ArrayBinaryTree:
+      7
+   3
+      2
+1
+      6
+   5
+      8
+2. Binary hw5_21000689_nguyenxuanloi created by LinkedBinaryTree:
+      7
+   3
+      2
+1
+      6
+   5
+      8

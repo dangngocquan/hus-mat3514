@@ -1,0 +1,13 @@
+- Gói bài tập thực hiện: combo 3.
+- Nội dung bài làm:
+  + Thuật toán: sử dụng phương thức transform(tree, element) để thay đổi cây bằng phần tử element với các thao tác:
+    . Tìm node có giá trị bằng element với phương thức findNode(tree, element). Phương thức findNode(tree, element) trả về địa chỉ của node có giá trị bằng element hoặc null nếu không tìm thấy.
+    . Nếu findNode(tree, element) == root || findNode(tree, element) == null thì không cần làm gì cả (root mới bằng root cũ hoặc không tồn tại giá trị element trong cây).
+    . Tìm đường đi từ findNode(tree, element) đến root cũ. Gọi đường đi này là v_1, v_2, ..., v_k, trong đó v_1 là findNode(tree, element) và v_k là root.
+    . Đổi vai trò của v_i và v_(i+1) cho nhau (v_(i+1) sẽ là con của v_i) (i >= 1).
+    . Đặt root mới là findNode(tree, element).
+  + Tài liệu tham khảo: 
+    . GeeksforGeeks. (2023, June 5). Level Order traversal breadth first Search or BFS of binary tree. https://www.geeksforgeeks.org/level-order-tree-traversal/
+    . How to print binary tree diagram in Java? (n.d.). Stack Overflow. https://stackoverflow.com/questions/4965335/how-to-print-binary-tree-diagram-in-java
+  + Định dạng input: các cặp parent - child được nhập vào dưới dạng chuỗi: "<parent> - <child>", kiểu dữ liệu của parent với child phải đồng nhất và được cụ thể trong code.
+  + Yêu cầu hệ thống: Java 8/11/17.
