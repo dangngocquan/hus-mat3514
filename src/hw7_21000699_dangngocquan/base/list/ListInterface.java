@@ -1,4 +1,4 @@
-package hw7_21000699_dangngocquan.exercise001.list;
+package hw7_21000699_dangngocquan.base.list;
 
 public interface ListInterface<E> extends Iterable<E> {
     int size();
@@ -8,5 +8,7 @@ public interface ListInterface<E> extends Iterable<E> {
     E set(int index, E value);
     E remove(int index);
     boolean remove(E value);
+
+    int indexOf(E value);
     boolean isEmpty();
 }

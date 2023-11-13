@@ -1,4 +1,4 @@
-package hw7_21000699_dangngocquan.exercise001.list;
+package hw7_21000699_dangngocquan.base.list;
 
 public class UnsortedArrayList<E extends Comparable<E>> extends AbstractArrayList<E> {
 
@@ -35,5 +35,12 @@ public class UnsortedArrayList<E extends Comparable<E>> extends AbstractArrayLis
         E prev = get(index);
         data[index] = value;
         return prev;
+    }
+
+    @Override
+    public int indexOf(E value) {
+        int i = size - 1;
+        while (i >= 0 && value.compareTo(data[i]) != 0) i--;
+        return i;
     }
 }

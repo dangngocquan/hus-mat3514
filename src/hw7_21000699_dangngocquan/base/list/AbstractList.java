@@ -1,4 +1,4 @@
-package hw7_21000699_dangngocquan.exercise001.list;
+package hw7_21000699_dangngocquan.base.list;
 
 import java.util.Iterator;
 

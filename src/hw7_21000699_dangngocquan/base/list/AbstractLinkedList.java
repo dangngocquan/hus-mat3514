@@ -1,4 +1,4 @@
-package hw7_21000699_dangngocquan.exercise001.list;
+package hw7_21000699_dangngocquan.base.list;
 
 import java.util.Iterator;
 
@@ -78,6 +78,18 @@ public abstract class AbstractLinkedList<E extends Comparable<E>> extends Abstra
     @Override
     public boolean isEmpty() {
         return size == 0;
+    }
+
+    @Override
+    public int indexOf(E value) {
+        Node node = first;
+        int i = 0;
+        while (i < size && node != null) {
+            if (value.compareTo(node.data) == 0) return i;
+            node = node.next;
+            i++;
+        }
+        return -1;
     }
 
     @Override

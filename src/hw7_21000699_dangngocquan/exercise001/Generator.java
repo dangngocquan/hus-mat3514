@@ -1,4 +1,4 @@
-package hw7_21000699_dangngocquan.exercise001.generator;
+package hw7_21000699_dangngocquan.exercise001;
 
 public class Generator {
     // get random integer in [from, to-1]

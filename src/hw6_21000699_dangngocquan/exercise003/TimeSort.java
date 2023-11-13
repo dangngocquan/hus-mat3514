@@ -1,6 +1,7 @@
 package hw6_21000699_dangngocquan.exercise003;
 
-import hw7_21000699_dangngocquan.exercise001.sort.*;
+
+import hw6_21000699_dangngocquan.exercise003.sort.*;
 
 public class TimeSort<T extends Comparable<T>> {
     public long msBubbleSort(T[] array) {
