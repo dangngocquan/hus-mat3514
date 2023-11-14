@@ -1,8 +1,14 @@
 package hw7_21000699_dangngocquan.exercise002;
 
+import hw7_21000699_dangngocquan.exercise001.Generator;
+
 public class Test {
     public void run() {
         testBinarySearchTree();
+        testSearchRunTime(100000);
+        testSearchRunTime(1000000);
+        testSearchRunTime(10000000);
+        testSearchRunTime(100000000);
     }
 
     public void testBinarySearchTree() {
@@ -69,5 +75,18 @@ public class Test {
                 tree.toString().replace("\n", "\n" + " ".repeat(42))
         );
         System.out.println("-".repeat(90));
+    }
+
+    public void testSearchRunTime(int n) {
+        Integer x = new Generator().randomInteger(0, n);
+        RunTimeCalculator runtime = new RunTimeCalculator();
+        System.out.println("\nTEST SEARCH n = " + n);
+        System.out.println("Sequential search with array: " + runtime.sequentialSearchWithArray(n, x) + "ms");
+        System.out.println("Binary search with sorted array: " + runtime.binarySearchWithSortedArray(n, x) + "ms");
+        try {
+            System.out.println("Search with Binary Search Tree: " + runtime.searchInBinarySearchTree(n, x) + "ms");
+        } catch (OutOfMemoryError e) {
+            System.out.println("Search with Binary Search Tree: " + "Out of memory when creating sample");
+        }
     }
 }

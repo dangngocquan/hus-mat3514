@@ -14,14 +14,14 @@ public class BinarySearchTree<E extends Comparable<E>> extends LinkedBinaryTree<
 
     public Node<E> search(E x) {
         if (x == null) return null;
-        return search(x, root());
-    }
-
-    private Node<E> search(E x, Node<E> root) {
-        if (root == null) return null;
-        int compare = x.compareTo(root.element);
-        if (compare == 0) return root;
-        return compare < 0? search(x, root.left) : search(x, root.right);
+        Node<E> node = root();
+        while(node != null) {
+            int compare = x.compareTo(node.element);
+            if (compare == 0) return node;
+            if (compare < 0) node = node.left;
+            if (compare > 0) node = node.right;
+        }
+        return null;
     }
 
     public boolean insert(E x) {
@@ -30,25 +30,25 @@ public class BinarySearchTree<E extends Comparable<E>> extends LinkedBinaryTree<
             addRoot(x);
             return true;
         }
-        return insert(x, root());
-    }
-
-    private boolean insert(E x, Node<E> root) {
-        int compare = x.compareTo(root.element);
-        if (compare == 0) return false; // Duplicated value
-        if (compare < 0) {
-            if (root.left == null) {
-                addLeft(root, x);
+        Node<E> node = root();
+        while (node != null) {
+            int compare = x.compareTo(node.element);
+            if (compare == 0) return false; // Duplicated value
+            if (compare < 0) {
+                if (node.left == null) {
+                    addLeft(node, x);
+                    return true;
+                }
+                node = node.left;
+                continue;
+            }
+            if (node.right == null) {
+                addRight(node, x);
                 return true;
             }
-            return insert(x, root.left);
+            node = node.right;
         }
-        if (root.right == null) {
-            addRight(root, x);
-            return true;
-        }
-        return insert(x, root.right);
-
+        return false;
     }
 
     // Return root of tree after deleted x
