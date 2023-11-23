@@ -1,0 +1,68 @@
+COMBO 4: Bài 5, Bài 6 (nâng cao 3)
+
+BÀI 1: PriorityQueueInterface, Entry, SortedArrayPriorityQueue, SortedLinkedPriorityQueue, UnsortedArrayPriorityQueue, UnsortedLinkedPriorityQueue, PriorityQueueTest
+Yêu cầu xây dựng các kiểu dữ liệu và giao diện cho hàng đợi ưu tiên (Priority Queue) và các kiểu dữ liệu cài đặt hàng đợi ưu tiên sử dụng mảng và cấu trúc liên kết
+
+Kiểu dữ liệu Entry: Kiểu dữ liệu Entry được sử dụng để đại diện cho các cặp key-value trong hàng đợi ưu tiên. Điều này phản ánh tính chất của một hàng đợi ưu tiên, nơi mà mỗi phần tử được xác định bằng một key và có một giá trị tương ứng. 
+Giao diện PriorityQueueInterface: Giao diện PriorityQueueInterface định nghĩa các phương thức cơ bản cho hàng đợi ưu tiên như insert, removeMin, min, size, và isEmpty. Điều này giúp đảm bảo rằng mọi kiểu dữ liệu cài đặt hàng đợi ưu tiên phải tuân theo các nguyên tắc cơ bản. 
+
+Cài đặt UnsortedArrayPriorityQueue và SortedArrayPriorityQueue: Bài tập yêu cầu xây dựng cài đặt sử dụng mảng cho hàng đợi ưu tiên, trong đó UnsortedArrayPriorityQueue không quan tâm đến thứ tự phần tử, còn SortedArrayPriorityQueue duy trì thứ tự sắp xếp dựa trên key. Điều này phù hợp với mô phỏng một hàng đợi ưu tiên. 
+
+Cài đặt UnsortedLinkedPriorityQueue và SortedLinkedPriorityQueue: Đối với cài đặt sử dụng cấu trúc liên kết, xây dựng UnsortedLinkedPriorityQueue và SortedLinkedPriorityQueue, tương tự như cài đặt mảng. Điều này cho phép chọn giữa cài đặt sử dụng mảng hoặc liên kết dựa trên yêu cầu cụ thể của bài toán. 
+
+Phương thức removeMin và min: Các phương thức removeMin và min cho phép truy xuất và loại bỏ phần tử có độ ưu tiên cao nhất. Các phương thức này rất quan trọng cho một hàng đợi ưu tiên. 
+
+Test Cases: đã tạo phương thức test để kiểm tra các kiểu dữ liệu hàng đợi ưu tiên đã triển khai bằng cách sử dụng danh sách số nguyên và đối tượng hàng hóa. Điều này giúp đảm bảo tính đúng đắn và hiệu quả của cài đặt.
+
+BÀI 2: MinHeapPriorityQueue
+Cấu trúc cơ bản: Cài đặt có cấu trúc cơ bản, bao gồm các phương thức upHeap, downHeap, và các phương thức cơ bản như insert và removeMin. Điều này cho phép thêm và xóa phần tử từ hàng đợi ưu tiên dựa trên Min Heap.
+
+Phương thức upHeap và downHeap: Phương thức upHeap và downHeap được triển khai để duyệt lên và duyệt xuống trong heap để đảm bảo tính chất hàng đợi ưu tiên. Điều này quan trọng để đảm bảo rằng phần tử có độ ưu tiên cao nhất luôn ở đầu hàng đợi.
+
+Các phương thức đúng đắn: Các phương thức insert và removeMin được triển khai đúng cách và có tính chất đúng đắn cho một Min Heap Priority Queue.
+
+Kích thước mảng động:hạn chế kích thước mảng bằng cách sao chép nó khi cần thiết để đảm bảo rằng mảng không bao giờ bị tràn.
+
+BÀI 5: AirTrafficControlSystem
+1. Thêm Sự Kiện vào Hệ Thống:
+Bước đầu tiên của thuật toán là thêm sự kiện máy bay cất cánh và hạ cánh vào hệ thống bằng cách sử dụng hai phương thức addTakeoffEvent và addLandingEvent.
+Mỗi sự kiện máy bay được biểu diễn bởi một đối tượng TakeoffEvent hoặc LandingEvent với thời gian và số hiệu chuyến bay tương ứng.
+
+2.Quản Lý Hàng Đợi Ưu Tiên:
+Các sự kiện được quản lý trong hai hàng đợi ưu tiên riêng biệt: takeoffEvents cho sự kiện cất cánh và landingEvents cho sự kiện hạ cánh.
+Hàng đợi ưu tiên này sử dụng MinHeap để đảm bảo rằng các sự kiện được xử lý theo thứ tự thời gian ưu tiên, tức là sự kiện sắp xảy ra đầu tiên luôn nằm ở đầu hàng đợi.
+
+3. Xử Lý Sự Kiện:
+Phương thức processEvents là trung tâm của thuật toán. Nó được gọi để xử lý các sự kiện máy bay.
+Trong quá trình xử lý, chương trình lặp qua hàng đợi ưu tiên và lấy ra sự kiện sắp xảy ra (có thời gian ưu tiên nhỏ nhất) bằng phương thức removeMin
+.
+4. In Thông Báo Và Xử Lý Sự Kiện:
+Khi một sự kiện được lấy ra, chương trình kiểm tra xem đó là sự kiện cất cánh (TakeoffEvent) hoặc sự kiện hạ cánh (LandingEvent).
+Nếu là sự kiện cất cánh, chương trình in ra thông báo cho việc cất cánh của máy bay với số hiệu tương ứng.
+Nếu là sự kiện hạ cánh, chương trình in ra thông báo cho việc hạ cánh.
+Sau khi xử lý sự kiện, nó kiểm tra xem còn sự kiện nào trong hàng đợi hay không và tiếp tục lặp lại quá trình xử lý cho đến khi hàng đợi trống.
+
+5. Kết Thúc Quá Trình Xử Lý:
+Sau khi tất cả các sự kiện đã được xử lý, quá trình kết thúc..
+
+BÀI 6: StockTradingSystem
+1. Quản lý Lệnh Mua và Bán:
+Hệ thống quản lý danh sách các lệnh mua và bán chứng khoán. Mỗi lệnh được biểu diễn bởi giá của chứng khoán. Lệnh mua có giá x, và lệnh bán có giá y.
+Các lệnh này được lưu trữ trong hai hàng đợi ưu tiên riêng biệt: một hàng đợi cho lệnh mua (buyOrders) và một hàng đợi cho lệnh bán (sellOrders). Hàng đợi ưu tiên này đảm bảo rằng lệnh có giá thấp nhất (mua) hoặc giá cao nhất (bán) luôn nằm ở đầu hàng đợi.
+
+2. Xử Lý Lệnh Mua và Bán:
+Khi một lệnh mua (buy order) được thêm vào hệ thống, thuật toán kiểm tra xem có lệnh bán (sell order) nào có giá y ≤ x trong hàng đợi sellOrders. Nếu có, một giao dịch được thực hiện, và thông tin về giao dịch (giá mua và giá bán) được ghi lại.
+Tương tự, khi một lệnh bán (sell order) được thêm vào hệ thống, thuật toán kiểm tra xem có lệnh mua (buy order) nào có giá x mà x ≥ y trong hàng đợi buyOrders. Nếu có, một giao dịch được thực hiện, và thông tin về giao dịch được ghi lại.
+
+3. In Kết Quả Giao Dịch:
+Sau mỗi giao dịch, thông tin về giá mua và giá bán của chứng khoán được in ra để xác nhận rằng giao dịch đã được thực hiện.
+
+4. Quá Trình Tiếp Tục:
+Quá trình này lặp lại cho đến khi tất cả các lệnh mua và bán đã được xử lý hoặc không còn lệnh nào có thể thực hiện giao dịch.
+
+5.Xử Lý Lệnh Không Thể Thực Hiện Ngay Lập Tức:
+Nếu một lệnh mua hoặc bán không thể được thực hiện ngay lập tức do không có lệnh tương ứng, nó sẽ phải chờ cho đến khi một lệnh tương ứng xuất hiện trong hàng đợi.
+Thuật toán này đảm bảo rằng các lệnh mua và bán chứng khoán được thực hiện theo nguyên tắc mua và bán theo giá, đồng thời đảm bảo rằng các giao dịch được thực hiện theo đúng thứ tự ưu tiên giá.
+
+Tài liệu tham khảo: Geekforgeek, Stackoverflow, Github, Sách M.Goodrich.
+

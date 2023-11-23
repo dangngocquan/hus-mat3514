@@ -1,0 +1,14 @@
+Input:
+     Đầu vào là các thời gian máy bay cất/ hạ : vd 2020-10-10 18:10 - dai1
+                                                  2020-10-11 18:20 - dai
+Giải thích code :
+     Lớp FlightEvent đại diện cho một sự kiện bay với một thời điểm và tên sự kiện tương ứng. Lớp này triển khai giao diện Comparable để so sánh các sự kiện dựa trên thời điểm.
+     Lớp FlightEventSystem quản lý các sự kiện bay bằng cách sử dụng PriorityQueue<FlightEvent>. Nó cũng tạo giao diện Java Swing để tương tác với người dùng.
+     Giao diện người dùng bao gồm một bảng nhập liệu và một bảng ghi log.
+     Bảng nhập liệu cho phép người dùng nhập thời điểm và tên sự kiện cho một sự kiện bay. Nó bao gồm một nút để thêm sự kiện vào hàng đợi ưu tiên.
+     Bảng ghi log hiển thị danh sách các sự kiện bay trong hàng đợi ưu tiên.
+Thuật toán và cấu trúc dữ liệu:
+    Thuật toán được chọn để quản lý các sự kiện bay là một PriorityQueue (được triển khai dưới dạng heap nhị phân).
+    PriorityQueue đảm bảo các sự kiện bay được lưu trữ theo thứ tự sắp xếp dựa trên thời điểm của chúng.
+    Thêm một sự kiện vào hàng đợi ưu tiên có độ phức tạp thời gian là O(log n), trong đó n là số lượng sự kiện trong hàng đợi.
+    Lấy sự kiện với thời điểm nhỏ nhất (sự kiện tiếp theo) trong hàng đợi ưu tiên có độ phức tạp thời gian là O(1).

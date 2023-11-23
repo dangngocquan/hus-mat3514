@@ -1,0 +1,7 @@
+Yêu cầu của hệ thống:
+    Hệ thống là một ứng dụng giao dịch chứng khoán đơn giản.
+    Giao diện người dùng cho phép người dùng nhập các thông tin liên quan đến giao dịch chứng khoán, bao gồm số lượng cổ phiếu và giá.
+    Người dùng có thể thêm các lệnh mua hoặc bán vào hệ thống bằng cách nhấn vào nút "Add" tương ứng trên giao diện.
+    Danh sách các lệnh giao dịch hiện có được hiển thị trên giao diện người dùng.
+ Thuật toán sử dụng :
+ PriorityQueue khai một cấu trúc dữ liệu để lưu trữ và quản lý các lệnh giao dịch chứng khoán.

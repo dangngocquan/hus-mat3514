@@ -1,0 +1,21 @@
+Giải thích class MainSortAlgorithmComparison:
+Bạn download
+Khởi tạo dữ liệu:
+
+DefaultCategoryDataset được sử dụng để lưu trữ dữ liệu vào các cột của biểu đồ.
+Mảng arraySizes chứa các kích thước mảng khác nhau để sắp xếp.
+Đo và lưu thời gian thực thi của các thuật toán sắp xếp:
+
+Vòng lặp for lặp qua từng kích thước mảng.
+Đo thời gian thực thi của mỗi thuật toán sắp xếp trên mảng được tạo ngẫu nhiên bằng cách sử dụng measureExecutionTime().
+dataset.addValue() được sử dụng để thêm giá trị thời gian thực thi của từng thuật toán sắp xếp vào DefaultCategoryDataset.
+Tạo biểu đồ:
+
+JFreeChart được sử dụng để tạo biểu đồ đường.
+ChartFactory.createLineChart() tạo một biểu đồ đường với các thông số như tiêu đề biểu đồ, nhãn trục x và y, dữ liệu và cấu hình khác.
+chart.getCategoryPlot().getRenderer().setSeriesPaint() được sử dụng để đặt màu cho từng dòng trong biểu đồ.
+ChartFrame được sử dụng để tạo một cửa sổ hiển thị biểu đồ.
+Các phương thức phụ:
+
+generateRandomArray() tạo một mảng ngẫu nhiên với kích thước đã cho.
+measureExecutionTime() đo thời gian thực thi của một khối mã và trả về thời gian đã trôi qua.
