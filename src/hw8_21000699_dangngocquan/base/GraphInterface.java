@@ -5,6 +5,9 @@ public interface GraphInterface<V, E> {
 
     boolean isWeightedGraph();
 
+    int degree();
+
+
     /*
     * Returns the number of vertices of the graph.
     * */
@@ -27,12 +30,18 @@ public interface GraphInterface<V, E> {
     * */
     Iterable<EdgeInterface<E>> edges();
 
+    Iterable<EdgeInterface<E>> adjacencyEdges(VertexInterface<V> u);
+
+    Iterable<VertexInterface<V>> adjacencyVertices(VertexInterface<V> u);
+
     /*
     * Returns the edge from vertex u to vertex v, if one exists;
     * otherwise return null. For an undirected graph, there is no
     * difference between getEdge(u, v) and getEdge(v, u)
     * */
     EdgeInterface<E> getEdge(VertexInterface<V> u, VertexInterface<V> v);
+
+    boolean isExistEdge(VertexInterface<V> u, VertexInterface<V> v);
 
     /*
     * Returns an array containing the two endpoint vertices of

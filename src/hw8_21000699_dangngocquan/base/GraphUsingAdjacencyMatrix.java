@@ -44,7 +44,7 @@ public class GraphUsingAdjacencyMatrix<V, E> extends AbstractGraph<V, E> {
 
     @Override
     public Iterable<EdgeInterface<E>> edges() {
-        Set<EdgeInterface<E>> set = new HashSet<>();
+        Set<EdgeInterface<E>> set = new LinkedHashSet<>();
         for (EdgeInterface<E>[] edges : adjacencyMatrix) {
             for (EdgeInterface<E> edge : edges) {
                 if (edge != null) {
